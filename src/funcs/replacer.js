@@ -1,3 +1,6 @@
+const fs = require("fs")
+
+
 module.exports = async (data, name, db, message, client, error) => {
    /* const parse = fs.readdirSync(__dirname + "/functions")*/
    let d = data.name.replace(/\$/g, "")
