@@ -50,7 +50,7 @@ class CommandHandler {
     files.forEach( x => {
       bot.command({
         name:require(`${dirFolder}/${x}`).name,
-        code:require(`./commands/${x}`).code
+        code:require(`${dirFolder}/${x}`).code
       });
     });
   }
