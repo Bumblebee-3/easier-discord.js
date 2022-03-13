@@ -1,4 +1,5 @@
 module.exports = async (d) => {
-  let pong = d.db.ping;
-  return pong;
+  let now = Date.now()
+  d.db.all()
+  return Date.now() - now
 }
