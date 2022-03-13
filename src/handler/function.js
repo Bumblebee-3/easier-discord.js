@@ -1,16 +1,5 @@
 module.exports = async (cod, name, db, msg, client) => {
-String.prototype.replaceLast = function (find, replace) {
-  let code = this.toLowerCase()
-    const index = code.lastIndexOf(find);
 
-  if (index >= 0) {
-    return (
-      this.substring(0, index) + replace + this.substring(index + find.length)
-    );
-  }
-
-  return this.toString();
-}
 
     let readFunc = require("../funcs/parser.js")
     
