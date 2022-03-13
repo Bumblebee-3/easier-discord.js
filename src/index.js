@@ -41,10 +41,10 @@ const fs = require("fs")
 const path = require("path")
 
 class CommandHandler {
-  constructor(args) {
-    let folder = args.folder;
+  constructor(bot, folder) {
+    let folder = folder;
     let dirFolder = path.join(process.cwd(), folder);
-    let bot = args.bot;
+    let bot = bot;
 
     let files = fs.readdirSync(dirFolder).filter(file => file.endsWith('js'))
     files.forEach( x => {
