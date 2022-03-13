@@ -33,7 +33,7 @@ constructor (opt) {
     
   async  login(token) {
        await this.client.login(token)
-        console.log("Initialized on "+this.client.user.tag +"\n Simple Discord");
+        console.log("Initialized on "+this.client.user.tag +"\nMade with : Simple Discord");
         }
 }
 
