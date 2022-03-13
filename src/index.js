@@ -37,6 +37,27 @@ constructor (opt) {
         }
 }
 
+const fs = require("fs")
+const path = require("path")
+
+class CommandHandler {
+  constructor(args) {
+    let folder = args.folder;
+    let dirFolder = path.join(process.cwd(), folder);
+    let bot = args.bot;
+
+    let files = fs.readdirSync(dirFolder).filter(file => file.endsWith('js'))
+    files.forEach( x => {
+      bot.command({
+        name:require(`${dirFolder}/${x}`).name,
+        code:require(`./commands/${x}`).code
+      });
+    });
+  }
+}
+
+
 module.exports = {
-    Bot
-    }
+    Bot,
+    CommandHandler
+}
