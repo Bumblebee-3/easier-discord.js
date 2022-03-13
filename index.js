@@ -1,5 +1,5 @@
-const { Bot , CommandHandler } = require("./src/index.js")
+const client = require("./src/index.js")
+require("./src/handler/string.js")
 module.exports = {
-  Bot: Bot,
-  CommandHandler: CommandHandler
-}
+    Bot: client.Bot
+    }
