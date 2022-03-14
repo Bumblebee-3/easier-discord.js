@@ -1,3 +1,6 @@
+const Discord = require("discord.js");
+
+
 const EmbedParser = async (msg) => {
   msg = mustEscape(msg);
 
