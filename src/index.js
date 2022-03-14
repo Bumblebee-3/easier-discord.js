@@ -5,7 +5,7 @@ class Bot {
 constructor (opt) {
     this.opt = opt
     this.client = {}
-    this.db = new Db.Create("main", opt.?database || {})
+    this.db = new Db.Create("main", opt?.database || {})
     this.cmd = new Map()
     this.start()
     }
