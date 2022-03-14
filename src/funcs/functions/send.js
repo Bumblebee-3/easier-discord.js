@@ -1,22 +1,6 @@
-const { EmbedParser } = require("../embedparser.js");
 
-module.exports = async (d) => {
-   const [id, msg,embed="nothing"] = d.data.splits;
-   const client = d.client;
-   const channel = await client.channels.cache.get(id);
-   let hmmm = {};
-   if (embed=="nothing"){ 
-       channel.send(`${msg}`.addB());
-   }
-   else{
-       hmmm.embeds = await EmbedParser(embed);
-       hmmm.content = msg;
-       channel.send(hmmm.addB());
-   }
-   return ""
-}
 
-/*
+
 
 module.exports = async (d) => {
    const [id, msg] = d.data.splits;
@@ -26,4 +10,4 @@ module.exports = async (d) => {
    return ""
 }
 
-*/
+
