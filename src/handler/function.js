@@ -28,7 +28,8 @@ for (const func of functions) {
     msg.error = false
   const regEscape = v => v.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 
-let params = code.split(new RegExp (regEscape(func), "gi"))[1].replace("[", "")?.split("]")[0]
+let params = code.split(new RegExp (regEscape(func), "gi"))
+params = params[params.length - 1].replace("[", "")?.split("]")[0]
  all.push({name: func, inside: params, splits: params.split(";"), all: func + "[" + params + "]"})
 let splitted = params.split(";")
 let replacer = await require("../funcs/replacer.js")({name: func, inside: params, splits: params.split(";"), all: func + "[" + params + "]"}, name, db, msg, client, msg.error, real)
