@@ -1,11 +1,11 @@
 const Discord = require("discord.js")
 const Db = require("json-db-easier")
-const db = new Db.Create("main")
+
 class Bot {
 constructor (opt) {
     this.opt = opt
     this.client = {}
-    this.db = db
+    this.db = new Db.Create("main", opt.?database || {})
     this.cmd = new Map()
     this.start()
     }
