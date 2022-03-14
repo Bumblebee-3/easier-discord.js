@@ -29,7 +29,7 @@ let dirFolder = path.join(__dirname, "funcs", "functions");
     
     onMessage() {
     this.client.on("messageCreate", async (msg) => {
-        await require("./handler/commands.js")(msg, this.client, this.db, this.cmd)
+        await require("./handler/commands.js")(msg, this.client, this.db, this.cmd, this)
         })
     }
     
