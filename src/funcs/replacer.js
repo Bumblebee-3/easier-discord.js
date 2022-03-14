@@ -1,6 +1,6 @@
-module.exports = async (data, name, db, message, client, error) => {
+module.exports = async (data, name, db, message, client, error, real) => {
    /* const parse = fs.readdirSync(__dirname + "/functions")*/
-let d = data.name.replace(/\$/g, "")
-let all = {db: db, data: data, msg: message, client: client, cmd: name, error: error}
-   return await require ("./functions/" + d.toLowerCase() + ".js")(all)
+let d = data.name
+let all = {db: db, data: data, msg: message, client: client, cmd: name, error: error, this: real}
+   return await real.functions.get (d.toLowerCase())(all)
     }
