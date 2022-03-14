@@ -51,7 +51,7 @@ let dirFolder = path.join(__dirname, "funcs", "functions");
 
 class CommandHandler extends Bot{
   constructor(folder) {
-    let folder = folder;
+
     let dirFolder = path.join(process.cwd(), folder);
     
     let files = fs.readdirSync(dirFolder).filter(file => file.endsWith('js'))
