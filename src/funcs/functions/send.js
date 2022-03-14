@@ -1,7 +1,3 @@
-
-
-
-
 module.exports = async (d) => {
    const [id, msg] = d.data.splits;
    const client = d.client;
