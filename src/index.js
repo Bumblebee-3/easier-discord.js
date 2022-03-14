@@ -40,18 +40,14 @@ constructor (opt) {
 const fs = require("fs")
 const path = require("path")
 
-class CommandHandler {
-  constructor(bot, folder) {
+class CommandHandler extends Bot{
+  constructor(folder) {
     let folder = folder;
     let dirFolder = path.join(process.cwd(), folder);
-    let bot = bot;
-
+    const theFile = require(`${dirFolder}/${x}`)
     let files = fs.readdirSync(dirFolder).filter(file => file.endsWith('js'))
     files.forEach( x => {
-      bot.command({
-        name:require(`${dirFolder}/${x}`).name,
-        code:require(`${dirFolder}/${x}`).code
-      });
+      this.cmd.set(theFile.name, theFile.code)
     });
   }
 }
