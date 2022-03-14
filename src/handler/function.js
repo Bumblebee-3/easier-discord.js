@@ -1,4 +1,4 @@
-module.exports = async (cod, name, db, msg, client) => {
+module.exports = async (cod, name, db, msg, client, real) => {
 
 
     let readFunc = require("../funcs/parser.js")
