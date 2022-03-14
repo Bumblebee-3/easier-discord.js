@@ -105,3 +105,8 @@ const EmbedParser = async (msg) => {
   }
   return embeds;
 };
+
+
+module.exports = {
+  EmbedParser
+}
