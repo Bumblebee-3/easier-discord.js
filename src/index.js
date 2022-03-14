@@ -1,5 +1,7 @@
 const Discord = require("discord.js")
 const Db = require("json-db-easier")
+const fs = require("fs")
+const path = require("path")
 
 class Bot {
 constructor (opt) {
@@ -7,6 +9,7 @@ constructor (opt) {
     this.client = {}
     this.db = new Db.Create("main", opt?.database || {})
     this.cmd = new Map()
+    this.functions = new Map()
     this.start()
     }
     
@@ -15,6 +18,13 @@ constructor (opt) {
     this.opt
   )
    this.client = client
+let dirFolder = path.join(__dirname, "funcs", "functions");
+    
+    let files = fs.readdirSync(dirFolder).filter(file => file.endsWith('js'))
+    files.forEach( x => {
+      const file = require(`${dirFolder}/${x}`)
+      this.functions.set("$" + x.replace(".js", ""), file)
+    });
         }
     
     onMessage() {
@@ -37,16 +47,16 @@ constructor (opt) {
         }
 }
 
-const fs = require("fs")
-const path = require("path")
+
 
 class CommandHandler extends Bot{
   constructor(folder) {
     let folder = folder;
     let dirFolder = path.join(process.cwd(), folder);
-    const theFile = require(`${dirFolder}/${x}`)
+    
     let files = fs.readdirSync(dirFolder).filter(file => file.endsWith('js'))
     files.forEach( x => {
+      const theFile = require(`${dirFolder}/${x}`)
       this.cmd.set(theFile.name, theFile.code)
     });
   }
