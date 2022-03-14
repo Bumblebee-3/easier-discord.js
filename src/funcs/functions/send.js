@@ -9,8 +9,8 @@ module.exports = async (d) => {
        channel.send(`${msg}`.addB());
    }
    else{
-       let hmmm.embed = await EmbedParser(embed);
-       let hmmm.content = msg;
+       hmmm.embeds = await EmbedParser(embed);
+       hmmm.content = msg;
        channel.send(hmmm.addB());
    }
    return ""
