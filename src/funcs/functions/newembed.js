@@ -6,7 +6,7 @@ module.exports = async (d) => {
    const client = d.client;
    const channel = await client.channels.cache.get(id);
    const embed = new MessageEmbed()
-      .setTitle(opts[1].addB())
+      .setTitle(opts[0].addB())
    const mess = await channel.send({ embeds: [embed] });
    return ""
 }
