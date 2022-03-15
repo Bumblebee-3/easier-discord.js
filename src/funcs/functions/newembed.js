@@ -6,6 +6,8 @@ module.exports = async (d) => {
    const client = d.client;
    const channel = await client.channels.cache.get(id);
    const embed = {};
+   embed.author={};
+   embed.thumbnail = {};
    if (title !== undefined){
       embed.title=title.addB();
    }
@@ -19,11 +21,9 @@ module.exports = async (d) => {
       embed.description=description.addB();
    }
    if (thumbnail !== undefined){
-      embed.thumbnail={};
       embed.thumbnail.url=thumbnail.addB();
    }
    if (author !== undefined){
-      embed.author={};
       embed.author.name=author.addB().split(":")[0];
       embed.author.icon_url=author.addB().split(":")[1];
       embed.author.url=author.addB().split(":")[2];
