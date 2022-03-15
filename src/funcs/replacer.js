@@ -3,7 +3,7 @@ module.exports = async (data, name, db, message, client, error, real) => {
 
 function err (d, message) {
 d.msg.error = true
-d.msg.channel.send(`\`${d.data.func} error: ${message}\``)
+d.msg.channel.send(`\`${d.data.name} error: ${message}\``)
 }
 
 let d = data.name
