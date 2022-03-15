@@ -6,13 +6,13 @@ const path = require("path")
 class Bot {
 constructor (opt) {
     this.opt = opt
-    this.prefix = opt.prefix
     this.client = {}
+    this.client.prefix = opt.prefix
     this.db = new Db.Create("main", opt?.database || {})
     this.cmd = new Map()
     this.functions = new Map()
     this.start()
-if(!this.prefix) throw new Error("prefix must be defined");
+if(!this.client.prefix) throw new Error("prefix must be defined");
     }
     
   async start() {
