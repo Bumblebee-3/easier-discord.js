@@ -38,6 +38,7 @@ module.exports = async (d) => {
    }
    
    let len = opts.length;
-   return len;
+   console.log(len);
    channel.send({embeds:[embed]})
+   return "";
 }
