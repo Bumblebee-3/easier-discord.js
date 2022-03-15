@@ -7,12 +7,12 @@ class Bot {
 constructor (opt) {
     this.opt = opt
     this.client = {}
-    this.client.prefix = opt.prefix
+    this.prefix = opt.prefix
     this.db = new Db.Create("main", opt?.database || {})
     this.cmd = new Map()
     this.functions = new Map()
     this.start()
-if(!this.client.prefix) throw new Error("prefix must be defined");
+if(typeof this.prefix != "string") throw new Error("prefix must be string");
     }
     
   async start() {
@@ -45,6 +45,7 @@ let dirFolder = path.join(__dirname, "funcs", "functions");
     
   async  login(token) {
        await this.client.login(token)
+        this.client.prefix = this.prefix
         console.log("Initialized on "+this.client.user.tag +"\nMade with : Simple Discord");
         }
 }
