@@ -41,7 +41,12 @@ module.exports = async (d) => {
    
    if (opts !==undefined){
       for (let i = 0; i < opts.length; i++) {
-         let txt = opts[i].addB();
+         let txt = opts[i];
+         embed.fields[i]={};
+         embed.fields[i].name=txt.addB().split(":")[0];
+         embed.fields[i].value=txt.addB().split(":")[1];
+         embed.fields[i].inline=txt.addB().split(":")[0];
+         
       }
    }
    channel.send({embeds:[embed]})
