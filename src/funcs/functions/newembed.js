@@ -34,7 +34,7 @@ module.exports = async (d) => {
    }
    if (footer !== undefined){
       embed.footer.text = footer.addB().split(":")[0];
-      embed.footer.icon_url: footer.addB().split(":")[1];
+      embed.footer.icon_url= footer.addB().split(":")[1];
    }
    channel.send({embeds:[embed]})
 }
