@@ -19,6 +19,7 @@ module.exports = async (d) => {
       embed.description=description.addB();
    }
    if (thumbnail !== undefined){
+      embed.thumbnail={};
       embed.thumbnail.url=thumbnail.addB();
    }
    channel.send({embeds:[embed]})
