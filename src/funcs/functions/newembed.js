@@ -2,7 +2,7 @@ const { MessageEmbed } = require('discord.js');
 
 
 module.exports = async (d) => {
-   const [id,title,color,url,description,thumbnail,author,timestamp,footer] = d.data.splits;
+   const [id,title,color,url,description,thumbnail,author,timestamp,footer,...opts] = d.data.splits;
    const client = d.client;
    const channel = await client.channels.cache.get(id);
    const embed = {};
@@ -36,5 +36,8 @@ module.exports = async (d) => {
       embed.footer.text = footer.addB().split(":")[0];
       //embed.footer.icon_url= footer.addB().split(":")[1];
    }
+   
+   let len = opts.length;
+   return len;
    channel.send({embeds:[embed]})
 }
