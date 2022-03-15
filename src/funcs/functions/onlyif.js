@@ -1,8 +1,13 @@
 module.exports = async (d) => {
  const [condition, ms] = d.data.splits
- let cond = eval(condition)
+ try {
+let cond = eval(condition)
 d.msg.error = !cond
    
 d.msg.error ? d.msg.channel.send(`${ms}`) : ""
-    return ""
+  }
+catch (e) {
+d.sendError(d, "Wrong usage. condition must have \". example : $onlyIf["value" == "value";error message here]")
+}
+  return ""
 }
