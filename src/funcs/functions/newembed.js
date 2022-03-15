@@ -3,10 +3,8 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = async (d) => {
    const [id,title,color,url,description,thumbnail] = d.data.splits;
-   const channel = await client.channels.cache.get(id);
-   
-
    const client = d.client;
+   const channel = await client.channels.cache.get(id);
    const embed = {};
    if (title !== undefined){
       embed.title=title.addB();
