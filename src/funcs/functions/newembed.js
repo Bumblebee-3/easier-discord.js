@@ -26,15 +26,15 @@ module.exports = async (d) => {
    }
    if (author !== undefined){
       embed.author.name=author.addB().split(":")[0];
-      embed.author.icon_url=author.addB().split(":")[1];
-      embed.author.url=author.addB().split(":")[2];
+      //embed.author.icon_url=author.addB().split(":")[1];
+      //embed.author.url=author.addB().split(":")[2];
    }
    if (timestamp !== undefined || timestamp !== false){
       embed.timestamp = new Date();
    }
    if (footer !== undefined){
       embed.footer.text = footer.addB().split(":")[0];
-      embed.footer.icon_url= footer.addB().split(":")[1];
+      //embed.footer.icon_url= footer.addB().split(":")[1];
    }
    channel.send({embeds:[embed]})
 }
