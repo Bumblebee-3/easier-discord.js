@@ -2,12 +2,13 @@ const { MessageEmbed } = require('discord.js');
 
 
 module.exports = async (d) => {
-   const [id,title,color,url,description,thumbnail,author] = d.data.splits;
+   const [id,title,color,url,description,thumbnail,author,timestamp,footer] = d.data.splits;
    const client = d.client;
    const channel = await client.channels.cache.get(id);
    const embed = {};
    embed.author={};
    embed.thumbnail = {};
+   embed.footer = {};
    if (title !== undefined){
       embed.title=title.addB();
    }
@@ -27,6 +28,13 @@ module.exports = async (d) => {
       embed.author.name=author.addB().split(":")[0];
       embed.author.icon_url=author.addB().split(":")[1];
       embed.author.url=author.addB().split(":")[2];
+   }
+   if (timestamp !== undefined || timestamp !== false){
+      embed.timestamp = new Date();
+   }
+   if (footer !== undefined){
+      embed.footer.text = footer.addB().split(":")[0];
+      embed.footer.icon_url: footer.addB().split(":")[1];
    }
    channel.send({embeds:[embed]})
 }
