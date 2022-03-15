@@ -5,19 +5,19 @@ module.exports = async (d) => {
    const [title,color,url,description,thumbnail] = d.data.splits;
    const client = d.client;
    const embed = {};
-   if (title.addB() !== undefined){
+   if (title !== undefined){
       embed.title=title.addB();
    }
-   if (color.addB() !== undefined){
+   if (color !== undefined){
       embed.color=color.addB();
    }
-   if (url.addB() !== undefined){
+   if (url !== undefined){
       embed.url=url.addB();
    }
-   if (description.addB() !== undefined){
+   if (description !== undefined){
       embed.description=description.addB();
    }
-   if (thumbnail.addB() !== undefined){
+   if (thumbnail !== undefined){
       embed.thumbnail=thumbnail.addB();
    }
    return [embed]
