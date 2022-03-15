@@ -38,7 +38,7 @@ let dirFolder = path.join(__dirname, "funcs", "functions");
     
     command(...opts) {
     for( const opt of opts) { 
-        this.cmd.set(opt.name.toLowerCase(), opt.code)
+        this.cmd.set(opt.name.toLowerCase(), opt)
         }
       }
     
@@ -60,7 +60,7 @@ class CommandHandler extends Bot{
     let files = fs.readdirSync(dirFolder).filter(file => file.endsWith('js'))
     files.forEach( x => {
       const theFile = require(`${dirFolder}/${x}`)
-      this.cmd.set(theFile.name, theFile.code)
+      this.cmd.set(theFile.name, theFile)
     });
   }
 }
