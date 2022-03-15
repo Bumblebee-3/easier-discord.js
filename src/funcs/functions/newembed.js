@@ -9,6 +9,7 @@ module.exports = async (d) => {
    embed.author={};
    embed.thumbnail = {};
    embed.footer = {};
+   embed.fields = [];
    if (title !== undefined){
       embed.title=title.addB();
    }
@@ -37,8 +38,12 @@ module.exports = async (d) => {
       //embed.footer.icon_url= footer.addB().split(":")[1];
    }
    
-   let len = opts.length;
-   console.log(len);
+   
+   if (opts !==undefined){
+      for (let i = 0; i < opts.length; i++) {
+         let txt = opts[i].addB();
+      }
+   }
    channel.send({embeds:[embed]})
    return "";
 }
