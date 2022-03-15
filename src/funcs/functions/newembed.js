@@ -3,7 +3,7 @@ const { MessageEmbed } = require('discord.js');
 
 module.exports = async (d) => {
    const [id,title,color,url,description,thumbnail] = d.data.splits;
-   const client = d.client;
+   /*const client = d.client;
    const channel = await client.channels.cache.get(id);
    const embed = {};
    embed.title=title.addB();
@@ -11,6 +11,6 @@ module.exports = async (d) => {
    embed.url=url.addB();
    embed.description=description.addB();
    embed.thumbnail=thumbnail.addB()
-   const mess = await channel.send({ embeds: [embed] });
-   return ""
+   const mess = await channel.send({ embeds: [embed] });*/
+   return id
 }
