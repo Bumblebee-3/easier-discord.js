@@ -44,7 +44,7 @@ module.exports = async (d) => {
          embed.fields[i]={};
          embed.fields[i].name=txt.addB().split(":")[0];
          embed.fields[i].value=txt.addB().split(":")[1];
-         embed.fields[i].inline=txt.split(":")[2];
+         //embed.fields[i].inline=txt.split(":")[2];
          
       }
    }
