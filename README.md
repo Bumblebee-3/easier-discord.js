@@ -7,7 +7,7 @@
 # Credits 
 > Fight Farewell Fearless#9295 //developer 
 
-> duckey | Nova dev#3049 //idea of new aoi.js 
+> duckey | Nova dev#3049 //package idea 
 
 > Blurr#1447 //best dev
 
