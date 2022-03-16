@@ -4,7 +4,7 @@ const { MessageEmbed } = require('discord.js');
 module.exports = async (d) => {
    const [title,author,description,color,thumbnail,timestamp,footer,url,...opts] = d.data.splits;
 
-   const embed = {};
+   let embed = {};
    embed.author={};
    embed.thumbnail = {};
    embed.footer = {};
