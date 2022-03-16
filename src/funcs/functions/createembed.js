@@ -45,6 +45,6 @@ module.exports = async (d) => {
          
       }
    }
-
+   console.log(embed)
    return JSON.stringify(embed);
 }
