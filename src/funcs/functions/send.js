@@ -1,8 +1,10 @@
 module.exports = async (d) => {
-   const [id, msg, returns] = d.data.splits;
+   let [id, msg, returns, embeds = {}] = d.data.splits;
    const client = d.client;
    const channel = await client.channels.cache.get(id);
-  const mess = await channel.send(`${msg}`.addB());
+   embeds = typeof embeds == "object" ? embeds : JSON.parse(embeds);
+   msg = msg == undefined || msg == "" ? " " : msg;
+   const mess = await channel.send({content: `${msg}`.addB(), embeds: [embeds]});
    return returns == "yes" ? mess?.id : ""
 }
 
