@@ -1,5 +1,4 @@
 module.exports = async (d) => {
-let [msg] = d.data.splits;
-console.log(msg);
+console.log(d.data.inside.addB());
 return "";
 }
