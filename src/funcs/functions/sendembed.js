@@ -49,5 +49,5 @@ module.exports = async (d) => {
       }
    }
   channel.send({ embeds:[embed] });
-   return " ";
+   return;
 }
