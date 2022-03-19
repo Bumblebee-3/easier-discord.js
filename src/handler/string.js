@@ -7,8 +7,10 @@ String.prototype.replaceLast = function (find, replace) {
     return (
       this.substring(0, index) + replace + this.substring(index + find.length)
     );
+console.log(`replacing ${this.toString()} ${find} to ${replace}`)
   }
 
+console.log("failed")
   return this.toString();
 }
 
