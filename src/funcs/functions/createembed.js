@@ -45,5 +45,5 @@ module.exports = async (d) => {
          
       }
    }
-   return JSON.stringify(embed).addB();
+   return JSON.stringify(embed).delB();
 }
