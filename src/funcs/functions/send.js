@@ -1,6 +1,7 @@
 module.exports = async (d) => {
    let [id, msg, returns, embeds] = d.data.splits;
    const client = d.client;
+   embeds = embeds.addB();
    const channel = await client.channels.cache.get(id);
    embeds = embeds == undefined ? "" : typeof embeds == "object" ? embeds : JSON.parse(embeds.delB());
    msg = msg == undefined || msg == "" ? " " : msg;
