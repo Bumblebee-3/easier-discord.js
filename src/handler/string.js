@@ -1,16 +1,14 @@
 
 String.prototype.replaceLast = function (find, replace) {
   let code = this.toLowerCase()
-    const index = code.lastIndexOf(find);
+    const index = code.lastIndexOf(find?.toLowerCase());
 
   if (index >= 0) {
     return (
       this.substring(0, index) + replace + this.substring(index + find.length)
     );
-console.log(`replacing ${this.toString()} ${find} to ${replace}`)
   }
 
-console.log("failed")
   return this.toString();
 }
 
