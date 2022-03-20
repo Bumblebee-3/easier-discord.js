@@ -1,3 +1,3 @@
 module.exports = async (d) => {
-return d.msg.guild.id
+return d.guild.id
 }
