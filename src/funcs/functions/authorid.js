@@ -1,3 +1,3 @@
 module.exports = async (d) => {
-    return d.author.id
+    return d.author?.id
     }
