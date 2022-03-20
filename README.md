@@ -10,3 +10,6 @@
 > NeonGamerBot_QK#1001 //lead dev
 
 > duckey | Nova dev#3049 //package idea && Docs manager
+
+## Docs
+* [Docs for this package(not complete)](https://docs.pirles.tk)
