@@ -4,8 +4,15 @@ module.exports = async (d) => {
    const channel = await client.channels.cache.get(id);
    embeds = embeds == undefined ? "" : typeof embeds == "object" ? embeds : JSON.parse(embeds.addB());
    msg = msg == undefined || msg == "" ? " " : msg;
-   const mess = await embeds != "" ? channel.send({content: `${msg}`.addB(), embeds: [embeds]}) : channel.send({content: `${msg}`.addB()});
-   return returns == "yes" ? mess?.id : ""
+   let mess;
+   try {
+   mess = await embeds != "" ? channel.send({content: `${msg}`.addB(), embeds: [embeds]}) : channel.send({content: `${msg}`.addB()});
+  }
+catch(e) {
+return d.sendError(d, e)
+}
+  return returns == "yes" ? mess?.id : ""
+
 }
 
 
