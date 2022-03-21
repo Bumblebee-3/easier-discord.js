@@ -22,16 +22,16 @@ module.exports = async (d) => {
       embed.thumbnail.url = thumbnail.addB();
    }
    if (author !== undefined){
-      embed.author.name=author.addB().split(":")[0];
-      //embed.author.icon_url=author.addB().split(":")[1];
-      //embed.author.url=author.addB().split(":")[2];
+      embed.author.name=author.split(":")[0].addB();
+      //embed.author.icon_url=author.split(":")[1].addB();
+      //embed.author.url=author.split(":")[2].addB();
    }
    if (timestamp !== undefined && timestamp != false){
       embed.timestamp = new Date();
    }
    if (footer !== undefined){
-      embed.footer.text = footer.addB().split(":")[0];
-      //embed.footer.icon_url = footer.addB().split(":")[1];
+      embed.footer.text = footer.split(":")[0].addB();
+      //embed.footer.icon_url = footer.split(":")[1].addB();
    }
    
    
