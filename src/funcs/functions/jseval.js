@@ -1,5 +1,5 @@
 module.exports = async (d) => {
-let __inside__ = d.data.inside;
+let __inside__ = d.data.splits;
 let __out__ = __inside__.shift();
 let __evaled__;
 let __index__;
