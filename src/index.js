@@ -27,7 +27,7 @@ let dirFolder = path.join(__dirname, "funcs", "functions");
     let files = fs.readdirSync(dirFolder).filter(file => file.endsWith('js'))
     files.forEach( x => {
       const file = require(`${dirFolder}/${x}`)
-      this.functions.set("$" + x.replace(".js", ""), file)
+      this.functions.set("$" + x.replace(".js", "").toLowerCase(), file)
     });
         }
     
