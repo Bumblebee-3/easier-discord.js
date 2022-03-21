@@ -7,19 +7,19 @@ module.exports = async (d) => {
    embed.footer = {};
    embed.fields = [];
    if (title !== undefined){
-      embed.title=title.addB();
+      embed.title = title.addB();
    }
    if (color !== undefined){
-      embed.color=color.addB();
+      embed.color = color.addB();
    }
    if (url !== undefined){
       embed.url=url.addB();
    }
    if (description !== undefined){
-      embed.description=description.addB();
+      embed.description = description.addB();
    }
    if (thumbnail !== undefined){
-      embed.thumbnail.url=thumbnail.addB();
+      embed.thumbnail.url = thumbnail.addB();
    }
    if (author !== undefined){
       embed.author.name=author.addB().split(":")[0];
@@ -31,7 +31,7 @@ module.exports = async (d) => {
    }
    if (footer !== undefined){
       embed.footer.text = footer.addB().split(":")[0];
-      //embed.footer.icon_url= footer.addB().split(":")[1];
+      //embed.footer.icon_url = footer.addB().split(":")[1];
    }
    
    
@@ -39,9 +39,9 @@ module.exports = async (d) => {
       for (let i = 0; i < opts.length; i++) {
          let txt = opts[i];
          embed.fields[i]={};
-         embed.fields[i].name=txt.addB().split(":")[0];
-         embed.fields[i].value=txt.addB().split(":")[1];
-         embed.fields[i].inline=txt.split(":")[2];
+         embed.fields[i].name = txt.addB().split(":")[0];
+         embed.fields[i].value = txt.addB().split(":")[1];
+         embed.fields[i].inline = txt.split(":")[2] || false;
          
       }
    }
