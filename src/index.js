@@ -11,6 +11,7 @@ constructor (opt) {
     this.db = new Db.Create("main", opt?.database || {})
     this.cmd = new Map()
     this.functions = new Map()
+    this.variable = new Map()
     this.start()
 if(typeof this.prefix != "string") throw new Error("prefix must be string");
     }
@@ -42,6 +43,11 @@ let dirFolder = path.join(__dirname, "funcs", "functions");
         }
       }
     
+    variables(opt) {
+for(const [name, value] of opt) {
+this.variable.set(name, value)
+}
+}
     
   async  login(token) {
        await this.client.login(token)
