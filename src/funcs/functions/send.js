@@ -6,7 +6,7 @@ module.exports = async (d) => {
    msg = msg == undefined || msg == "" ? " " : msg;
    let mess;
    try {
-   mess = await embeds != "" ? channel.send({content: `${msg}`.addB(), embeds: [embeds]}) : channel.send({content: `${msg}`.addB()});
+   mess = await embeds != "" ? await channel.send({content: `${msg}`.addB(), embeds: [embeds]}) : await channel.send({content: `${msg}`.addB()});
   }
 catch(e) {
 return d.sendError(d, e)
