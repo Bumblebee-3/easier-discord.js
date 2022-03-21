@@ -39,8 +39,8 @@ module.exports = async (d) => {
       for (let i = 0; i < opts.length; i++) {
          let txt = opts[i];
          embed.fields[i]={};
-         embed.fields[i].name = txt.addB().split(":")[0];
-         embed.fields[i].value = txt.addB().split(":")[1];
+         embed.fields[i].name = txt.split(":")[0].addB();
+         embed.fields[i].value = txt.split(":")[1].addB();
          embed.fields[i].inline = txt.split(":")[2] || false;
          
       }
