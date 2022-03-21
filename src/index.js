@@ -44,7 +44,7 @@ let dirFolder = path.join(__dirname, "funcs", "functions");
       }
     
     variables(opt) {
-for(const [name, value] of opt) {
+for(const [name, value] of Object.entries(opt)) {
 this.variable.set(name, value)
 }
 }
