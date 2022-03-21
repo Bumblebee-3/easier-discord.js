@@ -26,7 +26,7 @@ module.exports = async (d) => {
       //embed.author.icon_url=author.addB().split(":")[1];
       //embed.author.url=author.addB().split(":")[2];
    }
-   if (timestamp !== undefined || timestamp != false){
+   if (timestamp){
       embed.timestamp = new Date();
    }
    if (footer !== undefined){
