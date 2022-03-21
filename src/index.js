@@ -21,6 +21,7 @@ if(typeof this.prefix != "string") throw new Error("prefix must be string");
     this.opt
   )
    this.client = client
+   this.client.simpler = this
 let dirFolder = path.join(__dirname, "funcs", "functions");
     
     let files = fs.readdirSync(dirFolder).filter(file => file.endsWith('js'))
