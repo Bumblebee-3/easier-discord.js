@@ -1,8 +1,8 @@
 module.exports = async (d) => {
-const [messageid, content, embed = {}, channelid = d.channel.id] = d.data.splits
+const [messageid, content, embed, channelid = d.channel.id] = d.data.splits
 
 try {
-let embeds = JSON.parse(embed?.addB())
+let embeds = embed !== undefined ? JSON.parse(embed?.addB()) : undefined;
 const channel = await d.client.channels.cache.get(channelid)
 let message = await channel.messages.cache.get(messageid)
 if(!message) message = await channel.messages.fetch(messageid, { force: true }).catch((e) => undefined)
