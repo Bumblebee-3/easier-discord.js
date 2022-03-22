@@ -24,11 +24,14 @@ if(typeof this.prefix != "string") throw new Error("prefix must be string");
    this.client.simpler = this
 let dirFolder = path.join(__dirname, "funcs", "functions");
     
-    let files = fs.readdirSync(dirFolder).filter(file => file.endsWith('js'))
-    files.forEach( x => {
-      const file = require(`${dirFolder}/${x}`)
+    let folders = fs.readdirSync(dirFolder)
+    folders.forEach( x => {
+    let files = fs.readdirSync(path.join(dirFolder, x)).filter(file => file.endsWith('js'))
+     files.forEach( y => {
+     const file = require(`${path.join(dirFolder,x,y)}`)
       this.functions.set("$" + x.replace(".js", "").toLowerCase(), file)
-    });
+   })
+ });
         }
     
     onMessage() {
