@@ -1,5 +1,6 @@
 module.exports = async (d) => {
-const [id, value] = d.data.splits
-d.db.set(id, value)
+const [name, value] = d.data.splits;
+if(!d.this.variable.has(name)) return d.sendError(d, `Variable "${name}" not found`);
+d.db.set(name, value)
     return ""
     }
