@@ -8,6 +8,7 @@ let message = await channel.messages.cache.get(messageid)
 if(!message) message = await channel.messages.fetch(messageid, { force: true }).catch((e) => undefined)
 if(embeds) await message.edit({content: content, embeds: [embeds]}).catch((e) => d.sendError(d, "failed to edit message with reason: " + e))
 else await message.edit({content: content}).catch((e) => d.sendError(d, "failed to edit message with reason: " + e));
+return "";
 }
 catch (e) {
 return d.sendError(d, "failed to edit message with reason: " + e)
