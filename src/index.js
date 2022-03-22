@@ -2,7 +2,8 @@ const Discord = require("discord.js")
 const Db = require("json-db-easier")
 const fs = require("fs")
 const path = require("path")
-
+const debug = require("debug")("ez:main")
+debug("Loaded")
 class Bot {
 constructor (opt) {
     this.opt = opt
@@ -16,7 +17,8 @@ constructor (opt) {
 if(typeof this.prefix != "string") throw new Error("prefix must be string");
     }
     
-  async start() {
+   start() {
+    debug('Bot#start')
    const client = new Discord.Client(
     this.opt
   )
@@ -32,25 +34,30 @@ let dirFolder = path.join(__dirname, "funcs", "functions");
         }
     
     onMessage() {
+      debug('Bot#onMessage')
     this.client.on("messageCreate", async (msg) => {
+      debug('Bot#onMessage:func')
         await require("./handler/commands.js")(msg, this.client, this.db, this.cmd, this)
         })
     }
     
     
     command(...opts) {
+      debug('Bot#command', opts)
     for( const opt of opts) { 
         this.cmd.set(opt.name.toLowerCase(), opt)
         }
       }
     
     variables(opt) {
+      debug('Bot#variables', opt)
 for(const [name, value] of Object.entries(opt)) {
 this.variable.set(name, value)
 }
 }
     
   async  login(token) {
+    debug('Bot#login')
        await this.client.login(token)
         this.client.prefix = this.prefix
         console.log("Initialized on "+this.client.user.tag +"\nMade with : Simple Discord");

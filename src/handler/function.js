@@ -1,12 +1,13 @@
+let debug = require('debug')("ez:function")
 module.exports = async (cod, name, db, msg, client, real) => {
 
-
+debug("functions#")
     let readFunc = require("../funcs/parser.js")
     
     
 let code = cod
-let lower = code.toLowerCase()
-let split = code.split("$")
+// let lower = typeof code === "string" ? code.toLowerCase() : ""
+let split = typeof code === "string" ? code.split("$") : []
 let all = []
 let Fin = [] 
 function search(functions) {
@@ -23,7 +24,8 @@ if(func.length == 1) {
   
 return Fin
 }
-let functions = search(split).reverse()
+if(typeof code === "string") {
+  let functions = search(split).reverse()
 for (const func of functions) {
     msg.error = false
   const regEscape = v => v.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
@@ -38,6 +40,19 @@ let splitted = params.split(";")
 let replacer = await require("../funcs/replacer.js")({name: func, inside: params, splits: splitted.map(z => z == "" ? undefined : z), all: func + "[" + params + "]"}, name, db, msg, client, msg.error, real)
  code = code.replaceLast(func + "[" + params + "]", replacer)
     if(msg.error) break;
+}
+} else {
+  let message = msg
+  let messagee = message?.msg || message
+// let d = data.name
+function err (d, message) {
+  d.msg.error = true
+  d.msg.channel.send(`\`${d.data.name} error: ${message}\``)
+  }
+  let data = {}
+let all = {db: db, data: data, msg: messagee, message: messagee, author: message.author, channel: message.channel, guild: message.guild, member: message.member, mentions: message.mentions, client: client, cmd: name, error: msg.error, this: real, sendError: err}
+
+  code(all)
 }
 return code
 }
