@@ -29,7 +29,7 @@ let dirFolder = path.join(__dirname, "funcs", "functions");
     let files = fs.readdirSync(path.join(dirFolder, x)).filter(file => file.endsWith('js'))
      files.forEach( y => {
      const file = require(`${path.join(dirFolder,x,y)}`)
-      this.functions.set("$" + x.replace(".js", "").toLowerCase(), file)
+      this.functions.set("$" + y.replace(".js", "").toLowerCase(), file)
    })
  });
         }
