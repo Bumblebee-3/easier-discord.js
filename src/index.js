@@ -19,6 +19,8 @@ if(typeof this.prefix != "string") throw new Error("prefix must be string");
     
    start() {
     debug('Bot#start')
+console.clear()
+console.log("starting bot...\nif this happen more than 1 minute, u r probably didn't add <bot>.login() or something wrong with ur host")
    const client = new Discord.Client(
     this.opt
   )
@@ -62,7 +64,8 @@ this.variable.set(name, value)
   async  login(token) {
     debug('Bot#login')
        await this.client.login(token)
-        this.client.prefix = this.prefix
+        this.client.prefix = this.prefix;
+console.clear()
         console.log("Initialized on "+this.client.user.tag +"\nMade with : Simple Discord");
         }
 }
