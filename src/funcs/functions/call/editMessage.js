@@ -1,5 +1,5 @@
 module.exports = async (d) => {
-const [messageid, content, embed, channelid = d.channel.id] = d.data.splits
+const [messageid, content, embed, channelid = d.channel?.id] = d.data.splits
 
 try {
 let embeds = embed !== undefined ? JSON.parse(embed?.addB()) : undefined;
