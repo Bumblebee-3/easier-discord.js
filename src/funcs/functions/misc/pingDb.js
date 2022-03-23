@@ -1,3 +1,3 @@
 module.exports = async (d) => {
-  return d.db.ping;
+  return d.db.ping();
 }
