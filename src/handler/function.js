@@ -42,12 +42,12 @@ a++
 else if(param.charAt(i) == "]") {
 a--
   }
-else if (a == 0){
-param = i - 1
+else if (a <= 0 || param.charAt(i) == -1){
+param = a == 0 ? i - 1 : i - 2
 break;
   }
 }
-params = param.substring(1, cod)
+params = params.substring(1, param)
  all.push({name: func, inside: params, splits: params.split(";"), all: func + "[" + params + "]"})
 let splitted = params.split(";")
 let replacer = await require("../funcs/replacer.js")({name: func, inside: params, splits: splitted.map(z => z == "" ? undefined : z), all: func + "[" + params + "]"}, name, db, msg, client, msg.error, real)
