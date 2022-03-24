@@ -31,6 +31,7 @@ for (const func of functions) {
   const regEscape = v => v.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 
 let params = code.split(new RegExp (regEscape(func), "gi"))
+params = params[params.length - 1]
 let param = params;
 let a = 0;
 
