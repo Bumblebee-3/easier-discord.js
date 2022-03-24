@@ -43,7 +43,7 @@ else if(param.charAt(i) == "]") {
 a--
   }
 else if (a <= 0 || param.charAt(i) == -1){
-param = a >= 0 ? i - 1 : i a - 2
+param = a >= 0 ? i - 1 : i a - 1
 break;
   }
 }
