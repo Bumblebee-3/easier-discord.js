@@ -51,7 +51,15 @@ let dirFolder = path.join(__dirname, "funcs", "functions");
         this.cmd.set(opt.name.toLowerCase(), opt)
         }
       }
-    
+
+
+    ready(opt) {
+this.client.on("ready", async () => {
+await require ("./handler/function.js")(opt.code, undefined, this.db, {}, this.client, this)
+}
+}
+
+
     variables(opt) {
       debug('Bot#variables', opt)
 for(const [name, value] of Object.entries(opt)) {
