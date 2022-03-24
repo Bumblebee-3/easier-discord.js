@@ -56,7 +56,7 @@ let dirFolder = path.join(__dirname, "funcs", "functions");
     ready(opt) {
 this.client.on("ready", async () => {
 await require ("./handler/function.js")(opt.code, undefined, this.db, {}, this.client, this)
-}
+})
 }
 
 
