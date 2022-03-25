@@ -4,7 +4,7 @@ let condition = cond.split("==")
 return condition[0] == condition[1]
 }
 else if ( cond.includes("!=") ) {
-let condition = cond.split("==")
+let condition = cond.split("!=")
 return condition[0] != condition[1]
 }
 else if ( cond.includes(">=") ) {
