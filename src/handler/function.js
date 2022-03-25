@@ -41,13 +41,13 @@ a++
   }
 else if(param.charAt(i) == "]") {
 a--
-  }
-else if (a <= 0 || i > param.length){
+  };
+if (a <= 0 || i > param.length){
 param = a >= 0 ? i - 1 : a == -1 ? i - 2 : a == -2 ? i - 3 : a == -3 ? i - 4 : i - 5
 break;
   }
 }
-params = params.substring(1, param)
+params = params.substring(1, param + 1)
  all.push({name: func, inside: params, splits: params.split(";"), all: func + "[" + params + "]"})
 let splitted = params.split(";")
 let replacer = await require("../funcs/replacer.js")({name: func, inside: params, splits: splitted.map(z => z == "" ? undefined : z), all: func + "[" + params + "]"}, name, db, msg, client, msg.error, real)
