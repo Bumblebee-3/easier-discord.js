@@ -1,4 +1,5 @@
-module.exports = async (cond) => {
+module.exports = function (conditions) {
+const cond = String(conditions)
 if ( cond.includes("==") ) {
 let condition = cond.split("==")
 return condition[0] == condition[1]
