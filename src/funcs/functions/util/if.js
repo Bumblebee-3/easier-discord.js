@@ -1,4 +1,5 @@
 module.exports = async (d) => {
+const check = require("../../../handler/checkCondition.js")
  const [condition, True, False] = d.data.splits
-return eval(condition) ? True : False
+return check(condition) ? True : False
 }
