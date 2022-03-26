@@ -24,6 +24,5 @@ d.msg.error = true;
 const times = Date.now() + time;
   d.db.set(`cooldown_${d.cmd}_${d.author?.id}_${d.guild?.id || 'dm'}`, times)
     }
-  
-
+  return "";
 }
