@@ -25,6 +25,7 @@ if(func.length == 1) {
 return Fin
 }
 if(typeof code === "string") {
+  let datas = {}
   let functions = search(split).reverse()
 for (const func of functions) {
     msg.error = false
@@ -50,7 +51,7 @@ break;
 params = params.substring(1, param + 1)
 
 let splitted = params.split(";")
-let replacer = await require("../funcs/replacer.js")({name: func, inside: params, splits: splitted.map(z => z == "" ? undefined : z), all: func + "[" + params + "]"}, name, db, msg, client, msg.error, real)
+let replacer = await require("../funcs/replacer.js")({name: func, inside: params, splits: splitted.map(z => z == "" ? undefined : z), all: func + "[" + params + "]", datas: datas}, name, db, msg, client, msg.error, real)
  code = code.replaceLast(func + "[" + params + "]", replacer)
     if(msg.error) break;
 }
