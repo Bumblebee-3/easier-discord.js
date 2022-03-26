@@ -1,5 +1,5 @@
 let debug = require('debug')("ez:function")
-module.exports = async (cod, name, db, msg, client, real) => {
+module.exports = async (cod, name, db, msg, client, real, DaTa) => {
 
 debug("functions#")
     let readFunc = require("../funcs/parser.js")
@@ -25,7 +25,7 @@ if(func.length == 1) {
 return Fin
 }
 if(typeof code === "string") {
-  let datas = {}
+  let datas = DaTa || {};
   let functions = search(split).reverse()
 for (const func of functions) {
     msg.error = false
