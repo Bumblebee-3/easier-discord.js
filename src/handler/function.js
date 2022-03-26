@@ -8,7 +8,7 @@ debug("functions#")
 let code = cod
 // let lower = typeof code === "string" ? code.toLowerCase() : ""
 let split = typeof code === "string" ? code.split("$") : []
-let all = []
+
 let Fin = [] 
 function search(functions) {
 for(const f of functions) {
@@ -48,7 +48,7 @@ break;
   }
 }
 params = params.substring(1, param + 1)
- all.push({name: func, inside: params, splits: params.split(";"), all: func + "[" + params + "]"})
+
 let splitted = params.split(";")
 let replacer = await require("../funcs/replacer.js")({name: func, inside: params, splits: splitted.map(z => z == "" ? undefined : z), all: func + "[" + params + "]"}, name, db, msg, client, msg.error, real)
  code = code.replaceLast(func + "[" + params + "]", replacer)
