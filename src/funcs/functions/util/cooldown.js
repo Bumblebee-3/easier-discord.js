@@ -19,10 +19,11 @@ err = err.replace(/\{getTime\}/g, GetTime)
 d.channel.send(err)
 d.msg.error = true;
     }
+}
   else {
 const times = Date.now() + time;
   d.db.set(`cooldown_${d.cmd}_${d.author?.id}_${d.guild?.id || 'dm'}`, times)
     }
-  }
+  
 
 }
