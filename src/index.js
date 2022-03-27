@@ -10,7 +10,7 @@ constructor (opt) {
     this.client = {}
     this.prefix = opt.prefix
     this.db = new Db.Create("main", opt?.database || {})
-    this.cmd = new Map()
+    this.cmd = require("./handler/commandType.js")
     this.functions = new Map()
     this.variable = new Map()
     this.start()
@@ -48,7 +48,7 @@ let dirFolder = path.join(__dirname, "funcs", "functions");
     command(...opts) {
       debug('Bot#command', opts)
     for( const opt of opts) { 
-        this.cmd.set(opt.name.toLowerCase(), opt)
+        this.cmd.default.set(opt.name.toLowerCase(), opt)
         }
       }
 
