@@ -85,7 +85,7 @@ class CommandHandler extends Bot{
     let files = fs.readdirSync(dirFolder).filter(file => file.endsWith('js'))
     files.forEach( x => {
       const theFile = require(`${dirFolder}/${x}`)
-      this.cmd.set(theFile.name, theFile)
+      this.cmd.default.set(theFile.name, theFile)
     });
   }
 }
