@@ -9,10 +9,10 @@ module.exports = async (msg, client, db, cmd, real) => {
 debug("Message event prams: ", withPref)
     if (withPref && cmds?.code && !msg.author?.bot)  {
         debug("Code is a string")
-        require("./function.js")(cmds.code, name, db, msg, client, real)
+        require("../function.js")(cmds.code, name, db, msg, client, real)
         } else if(withPref && cmds?.execute && !msg.author?.bot && typeof cmds.execute === 'function') {
             debug("code is a function")
-            require("./function.js")(cmds.execute, name, db, msg, client, real)
+            require("../function.js")(cmds.execute, name, db, msg, client, real)
         }
     
     }
