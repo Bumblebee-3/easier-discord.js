@@ -40,7 +40,7 @@ let dirFolder = path.join(__dirname, "funcs", "functions");
       debug('Bot#onMessage')
     this.client.on("messageCreate", async (msg) => {
       debug('Bot#onMessage:func')
-        await require("./handler/commands.js")(msg, this.client, this.db, this.cmd, this)
+        await require("./handler/command/default.js")(msg, this.client, this.db, this.cmd, this)
         })
     }
     
