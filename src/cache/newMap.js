@@ -1,4 +1,7 @@
 class newMap extends Map {
+constructor (opt) {
+super(opt)
+}
 set(name, value) {
 return super.set(name, value)
 }
