@@ -1,3 +1,4 @@
+const newMap = require ("../cache/newMap.js")
 module.exports = {
-default: new Map()
+default: new newMap()
 }
