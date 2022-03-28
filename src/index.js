@@ -60,7 +60,7 @@ await require("./handler/command/memberJoin.js")(member, this)
         }
       }
 
-    memberJoin(opt) {
+    memberJoinCommand(opt) {
 this.cmd.memberJoin.set(this.cmd.memberJoin.size, opt)
 }
 
