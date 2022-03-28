@@ -17,7 +17,7 @@ constructor (opt) {
     this.start()
 if(typeof this.prefix != "string") throw new Error("prefix must be string");
     }
-    
+    //start client
    start() {
     debug('Bot#start')
     const client = new Discord.Client(
@@ -36,7 +36,7 @@ let dirFolder = path.join(__dirname, "funcs", "functions");
    })
  });
         }
-    
+    //events
     onMessage() {
       debug('Bot#onMessage')
     this.client.on("messageCreate", async (msg) => {
@@ -45,7 +45,14 @@ let dirFolder = path.join(__dirname, "funcs", "functions");
         })
     }
     
-    
+    onMemberJoin() {
+this.client.on("guildMemberAdd", async (member) => {
+await require("./handler/command/memberJoin.js")(member, this)
+})
+}
+
+    //commands
+
     command(...opts) {
       debug('Bot#command', opts)
     for( const opt of opts) { 
