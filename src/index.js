@@ -90,7 +90,7 @@ this.variable.set(name, value)
 
 class CommandHandler {
   constructor(bot) {
-this = bot
+this.bot = bot
 }
   load(folder) {
   let dirFolder = path.join(process.cwd(), folder);
@@ -98,7 +98,7 @@ this = bot
     let files = fs.readdirSync(dirFolder).filter(file => file.endsWith('js'))
     files.forEach( x => {
       const theFile = require(`${dirFolder}/${x}`)
-      this.cmd[theFile?.type || "default"].set(theFile.name, theFile)
+      this.bot.cmd[theFile?.type || "default"].set(theFile.name, theFile)
     });
   }
 }
