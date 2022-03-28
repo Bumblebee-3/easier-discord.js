@@ -78,15 +78,17 @@ this.variable.set(name, value)
 
 
 
-class CommandHandler extends Bot{
-  constructor(folder) {
-
-    let dirFolder = path.join(process.cwd(), folder);
+class CommandHandler {
+  constructor(bot) {
+this = bot
+}
+  load(folder) {
+  let dirFolder = path.join(process.cwd(), folder);
     
     let files = fs.readdirSync(dirFolder).filter(file => file.endsWith('js'))
     files.forEach( x => {
       const theFile = require(`${dirFolder}/${x}`)
-      this.cmd.default.set(theFile.name, theFile)
+      this.cmd[theFile?.type || "default"].set(theFile.name, theFile)
     });
   }
 }
