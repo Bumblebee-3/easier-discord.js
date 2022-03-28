@@ -7,10 +7,10 @@ member: memb
 const cmds = bot.cmd.memberJoin.values()
 for(const cmd of cmds) {
 if(cmd?.channel?.includes("$")) {
-data.channel = await require("../function.js")(cmd?.channel, "channeleval", bot.db, data, bot.client, bot)
+data.channel = bot.client.channels.cache.get(await require("../function.js")(cmd?.channel, "channeleval", bot.db, data, bot.client, bot))
     }
 else {
-data.channel = cmd?.channel
+data.channel = bot.client.channels.cache.get(cmd?.channel)
     }
 await require("../function.js")(cmd?.code, "memberJoin", bot.db, data, bot.client, bot)
   }
