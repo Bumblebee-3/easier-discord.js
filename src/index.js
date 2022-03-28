@@ -60,6 +60,9 @@ await require("./handler/command/memberJoin.js")(member, this)
         }
       }
 
+    memberJoin(opt) {
+this.cmd.memberJoin.set(this.cmd.memberJoin.size, opt)
+}
 
     ready(opt) {
 this.client.on("ready", async () => {
