@@ -1,4 +1,5 @@
 const Discord = require("discord.js")
+const newMap = require("./cache/newMap.js")
 const Db = require("json-db-easier")
 const fs = require("fs")
 const path = require("path")
@@ -11,8 +12,8 @@ constructor (opt) {
     this.prefix = opt.prefix
     this.db = new Db.Create("main", opt?.database || {})
     this.cmd = require("./handler/commandType.js")
-    this.functions = new Map()
-    this.variable = new Map()
+    this.functions = new newMap()
+    this.variable = new newMap()
     this.start()
 if(typeof this.prefix != "string") throw new Error("prefix must be string");
     }
