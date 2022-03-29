@@ -9,5 +9,5 @@ let res = await axios({
 return d.sendError(d, "Failed to interact to provided link with reason: " + e)
 })
 res = res?.data
-return property?.trim() != "" ? eval(`res?.${property}`).delB() : `${res}`.delB();
+return property?.trim() != "" ? eval(`res?.${property}`).delB() : JSON.stringify(res).delB();
 }
