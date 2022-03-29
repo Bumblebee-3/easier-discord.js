@@ -20,10 +20,8 @@ constructor (opt) {
 if(typeof this.prefix != "string") throw new Error("prefix must be string");
     }
     //start client
-  async start() {
+  start() {
     debug('Bot#start')
-    const current = await getVersion();
-    if(current != version && current !== undefined) console.log("your version is old");
     const client = new Discord.Client(
     this.opt
   )
@@ -93,6 +91,8 @@ this.variable.set(name, value)
     
   async  login(token) {
     debug('Bot#login')
+       const current = await getVersion();
+       if(current != version && current !== undefined) console.log("your version is old");
        await this.client.login(token)
         this.client.prefix = this.prefix;
         console.log("Initialized on "+this.client.user.tag +"\nMade with : Simple Discord");
