@@ -54,6 +54,11 @@ this.client.on("guildMemberAdd", async (member) => {
 await require("./handler/command/memberJoin.js")(member, this)
 })
 }
+    onMemberLeave() {
+this.client.on("guildMemberRemove", async (member) => {
+await require("./handler/command/memberLeave.js")(member, this)
+})
+}
 
     //commands
 
@@ -66,6 +71,10 @@ await require("./handler/command/memberJoin.js")(member, this)
 
     memberJoinCommand(opt) {
 this.cmd.memberJoin.set(this.cmd.memberJoin.size, opt)
+}
+   
+   memberLeaveCommand(opt) {
+this.cmd.memberLeave.set(this.cmd.memberLeave.size, opt)
 }
 
     ready(opt) {
