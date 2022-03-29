@@ -92,7 +92,7 @@ this.variable.set(name, value)
   async  login(token) {
     debug('Bot#login')
        const current = await getVersion();
-       if(current != version && current !== undefined) console.log("your version is old");
+       if(current != version && current !== undefined) console.log("your version is probably old\ncurrent version: " + current + "\nyour version: " + version);
        await this.client.login(token)
         this.client.prefix = this.prefix;
         console.log("Initialized on "+this.client.user.tag +"\nMade with : Simple Discord");
