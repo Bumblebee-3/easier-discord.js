@@ -4,7 +4,7 @@ let __out__ = __inside__.shift();
 let __evaled__;
 let __index__;
 try {
- __evaled__ = eval(__inside__.join(";").addB())
+ __evaled__ = await eval(__inside__.join(";").addB())
 if(typeof __evaled__ != "string") __evaled__ = require("util").inspect(__evaled__, {depth:0});
 }
 catch (e) {
