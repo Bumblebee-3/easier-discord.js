@@ -1,3 +1,5 @@
+const getVersion = require ("./handler/version.js");
+const version = require("../package.json").version;
 const Discord = require("discord.js")
 const newMap = require("./cache/newMap.js")
 const Db = require("json-db-easier")
@@ -18,8 +20,10 @@ constructor (opt) {
 if(typeof this.prefix != "string") throw new Error("prefix must be string");
     }
     //start client
-   start() {
+  async start() {
     debug('Bot#start')
+    const current = await getVersion();
+    if(current != version && current !== undefined) console.log("your version is old");
     const client = new Discord.Client(
     this.opt
   )
