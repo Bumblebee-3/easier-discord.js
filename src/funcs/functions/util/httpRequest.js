@@ -4,7 +4,7 @@ name: "$httpRequest",
 usage: "[url;property (optional, use this when u want to get json property);method(optional default to get)]",
 description: "make request to provided url",
 code: async (d) => {
-const [url, property = "", method = "get"] = d.data.splits;
+const [url, properties = "", method = "get"] = d.data.splits;
 if(url === undefined) return d.sendError(d, "link must be provided");
 let res = await axios({
    url: url?.addB(),
@@ -12,7 +12,8 @@ let res = await axios({
   }).catch(e => {
 return d.sendError(d, "Failed to interact to provided link with reason: " + e)
 })
-res = res?.data
+res = res?.data;
+let property = properties?.addB();
 let result = property?.trim() != "" ? eval(`res?.${property}`) : JSON.stringify(res).delB();
 return typeof result === "object" ? require ("util").inspect(result, {depth:0})?.delB() : result?.delB();
 }
