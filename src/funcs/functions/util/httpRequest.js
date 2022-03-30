@@ -2,7 +2,7 @@ const axios = require ("axios");
 module.exports = {
 name: "$httpRequest",
 usage: "[url;property (optional, use this when u want to get json property);method(optional default to get)]",
-description: "",
+description: "make request to provided url",
 code: async (d) => {
 const [url, property = "", method = "get"] = d.data.splits;
 if(url === undefined) return d.sendError(d, "link must be provided");
