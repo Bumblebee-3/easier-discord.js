@@ -1,4 +1,8 @@
-module.exports = async (d) => {
+module.exports = {
+name: "$jsEval",
+usage: "[return result?(yes/no);code]",
+description: "eval javascript code",
+code: async (d) => {
 let __inside__ = d.data.splits;
 let __out__ = __inside__.shift();
 let __evaled__;
@@ -11,4 +15,5 @@ catch (e) {
 return d.sendError(d, e)
 }
 return __out__ === "yes" ? __evaled__.toString().delB() : ""
+}
 }
