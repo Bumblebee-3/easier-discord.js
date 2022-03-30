@@ -1,4 +1,8 @@
-module.exports = async (d) => {
+module.exports = {
+name: "$cooldown",
+usage: "[time in ms;error message]",
+description: "make cooldown for author id in this guild use {getTime} to get the time\nExample: ```js\n$send[$channelId[];hi]\n$cooldown[3000;don't spam, wait for {getTime}]```",
+code: async (d) => {
 let [time, err = ""] = d.data.splits;
 err = err.addB();
 time = Number(time);
@@ -25,4 +29,5 @@ const times = Date.now() + time;
   d.db.set(`cooldown_${d.cmd}_${d.author?.id}_${d.guild?.id || 'dm'}`, times)
     }
   return "";
+}
 }
