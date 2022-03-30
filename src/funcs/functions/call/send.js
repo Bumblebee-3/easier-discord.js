@@ -1,4 +1,8 @@
-module.exports = async (d) => {
+module.exports = {
+name: "$send",
+usage: "[channel id;message (optional when embed provided);return id(yes/no)(optional);embeds(optional)]",
+description: "send message in provided channel id",
+code: async (d) => {
    let [id, msg, returns, embeds] = d.data.splits;
    const client = d.client;
    const channel = await client.channels.cache.get(id);
@@ -13,6 +17,7 @@ return d.sendError(d, e)
 }
   return returns == "yes" ? mess?.id : ""
 
+ }
+
+
 }
-
-
