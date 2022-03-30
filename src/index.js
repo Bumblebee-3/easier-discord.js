@@ -117,7 +117,7 @@ this.bot = bot
       const theFile = require(`${dirFolder}/${x}`)
      const theCmd = this.bot.cmd[theFile?.type || "default"]
      if(theCmd !== undefined) theCmd.set(theFile.name, theFile)
-     else console.warn("command type is invalid" + dirFolder + "/" + x);
+     else console.warn("command type is invalid " + dirFolder + "/" + x);
     });
   }
 }
