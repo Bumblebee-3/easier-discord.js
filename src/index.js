@@ -67,6 +67,10 @@ await require("./handler/command/memberLeave.js")(member, this)
         }
       }
 
+     executableCommand(opt) {
+    this.cmd.executable.set(opt.name.toLowerCase(), opt)
+     }
+
     memberJoinCommand(opt) {
 this.cmd.memberJoin.set(this.cmd.memberJoin.size, opt)
 }
@@ -111,7 +115,9 @@ this.bot = bot
     let files = fs.readdirSync(dirFolder).filter(file => file.endsWith('js'))
     files.forEach( x => {
       const theFile = require(`${dirFolder}/${x}`)
-      this.bot.cmd[theFile?.type || "default"].set(theFile.name, theFile)
+     const theCmd = this.bot.cmd[theFile?.type || "default"]
+     if(theCmd !== undefined) theCmd.set(theFile.name, theFile)
+     else console.warn("command type is invalid" + dirFolder + "/" + x);
     });
   }
 }
