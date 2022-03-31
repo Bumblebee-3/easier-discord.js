@@ -20,9 +20,9 @@ embeds.push(embed)
 
 content = content.replace("{createEmbed:" + inside + "}", "")
   }
-return {content: content, embeds: embeds};
+return {content: content?.addB(), embeds: embeds};
 }
-else return message;
+else return message?.addB();
 }
 
 
