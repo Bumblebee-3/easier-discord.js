@@ -58,6 +58,7 @@ await require("./handler/command/memberLeave.js")(member, this)
 })
 }
 
+
     //commands
 
     command(...opts) {
