@@ -19,9 +19,16 @@ if(Check(sp, "color")) {
 embed.color = Inside(sp, "color")?.addB();
 };
 if(Check(sp, "thumbnail")) {
-embed.thumbnail = {};
-embed.thumbnail.url = Inside(sp, "thumbnail")?.addB();
-}
+embed.thumbnail = {url: Inside(sp, "thumbnail")?.addB()};
+};
+if(Check(sp, "author")) {
+embed.author = {};
+const inside = Inside(sp, "author").split(":");
+embed.author.name = inside[0].addB();
+const inside1 = inside.slice(1).join(":");
+if(inside1 !== undefined) embed.author.icon_url = inside1?.addB();
+};
+
 
 embeds.push(embed)
 
