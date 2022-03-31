@@ -1,7 +1,7 @@
 module.exports = {
 name: "$math",
 usage: "[number]",
-description: "count the provided number\nExample: ```js\n$math[1+(3*3)]```",
+description: "count the provided number\nExample: \n```js\n$math[1+(3*3)]\n```",
 code: async (d) => {
 let result;
 try {
