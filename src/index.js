@@ -57,6 +57,12 @@ this.client.on("guildMemberRemove", async (member) => {
 await require("./handler/command/memberLeave.js")(member, this)
 })
 }
+    onBanAdd() {
+this.client.on("guildBanAdd", async (guild, user){
+await require("./handler/command/banAdd.js")(guild,user, this)
+
+});    
+}
 
     //commands
 
