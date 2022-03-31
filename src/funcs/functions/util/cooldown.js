@@ -5,6 +5,7 @@ description: "make cooldown for author id in this guild use {getTime} to get the
 code: async (d) => {
 let [time, err = ""] = d.data.splits;
 err = err.addB();
+err = d.util.embedParser(err);
 time = Number(time);
 if(isNaN(time)) return d.sendError(d, "Invalid time provided, make sure it's in ms");
 let Db = d.db.get(`cooldown_${d.cmd}_${d.author?.id}_${d.guild?.id || 'dm'}`)
