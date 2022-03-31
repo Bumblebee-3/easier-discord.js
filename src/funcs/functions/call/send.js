@@ -1,16 +1,16 @@
 module.exports = {
 name: "$send",
-usage: "[channel id;message (optional when embed provided);return id(yes/no)(optional);embeds(optional)]",
+usage: "[channel id;message;return id(yes/no)]",
 description: "send message in provided channel id",
 code: async (d) => {
-   let [id, msg, returns, embeds] = d.data.splits;
+   let [id, msg, returns] = d.data.splits;
    const client = d.client;
-   const channel = await client.channels.cache.get(id);
-   embeds = embeds == undefined ? "" : typeof embeds == "object" ? embeds : JSON.parse(embeds.addB());
+   let channel = await client.channels.cache.get(id);
+   if(!channel) channel = await client.channels.fetch(id, {force: false});
    msg = msg == undefined || msg == "" ? " " : msg;
    let mess;
    try {
-   mess = await embeds != "" ? await channel.send({content: `${msg}`.addB(), embeds: [embeds]}) : await channel.send({content: `${msg}`.addB()});
+  await channel.send(d.util.embedParser(message));
   }
 catch(e) {
 return d.sendError(d, e)
