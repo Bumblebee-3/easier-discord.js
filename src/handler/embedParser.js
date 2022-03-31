@@ -8,13 +8,13 @@ let embed = {};
 let fields = [];
 let inside = sp.slice(0, sp.lastIndexOf("}"));
 if(Check(sp, "title")) {
-embed.title = Inside (sp, "title");
+embed.title = Inside (sp, "title")?.addB();
 };
 if(Check(sp, "description")) {
-embed.description = Inside(sp, "description");
+embed.description = Inside(sp, "description")?.addB();
 };
 if(Check(sp, "color")) {
-embed.color = Inside(sp, "color");
+embed.color = Inside(sp, "color")?.addB();
 };
 embeds.push(embed)
 
