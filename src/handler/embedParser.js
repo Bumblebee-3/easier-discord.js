@@ -18,6 +18,11 @@ embed.description = Inside(sp, "description")?.addB();
 if(Check(sp, "color")) {
 embed.color = Inside(sp, "color")?.addB();
 };
+if(Check(sp, "thumbnail")) {
+embed.thumbnail = {};
+embed.thumbnail.url = Inside(sp, "thumbnail")?.addB();
+}
+
 embeds.push(embed)
 
 content = content.replace("{createEmbed:" + inside + "}", "")
