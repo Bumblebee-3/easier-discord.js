@@ -10,7 +10,7 @@ let insides = sp.slice(0, sp.lastIndexOf("}"));
 if(Check(sp, "title")) {
 const inside = Inside (sp, "title").split(":");
 embed.title = title[0]?.addB()
-if(title[1] !== undefined) embed.url = title[1]?.addB();
+if(title[1] !== undefined) embed.url = title.slice(1).join(":")?.addB();
 };
 if(Check(sp, "description")) {
 embed.description = Inside(sp, "description")?.addB();
