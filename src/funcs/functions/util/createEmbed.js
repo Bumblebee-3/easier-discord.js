@@ -1,7 +1,7 @@
 module.exports = {
 name: "$createEmbed",
 usage: "[title;author;description;color;thumbnail url;footer;url;field name:field value:inline?(yes/no)(optional);....]",
-description: "create json object for embed $send (all part r optional depends on how u use it)\nExample: ```js\n$send[$channelId[];hi;;$createEmbed[hello;;hi;RED]]```",
+description: "create json object for embed $send (all part r optional depends on how u use it)\nExample: \n```js\n$send[$channelId[];hi;;$createEmbed[hello;;hi;RED]]\n```",
 code: async (d) => {
    const [title,author,description,color,thumbnail,timestamp,footer,url,...opts] = d.data.splits;
 

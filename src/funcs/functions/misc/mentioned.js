@@ -1,7 +1,7 @@
 module.exports = {
 name: "$mentioned",
 usage: "[mention number]",
-description: "return mention user in mention number\nExample: ```js\n$mentioned[1]```",
+description: "return mention user in mention number\nExample: \n```js\n$mentioned[1]\n```",
 code: async (d) => {
 let [index = 1] = d.data.splits
 index = Number (index) - 1
