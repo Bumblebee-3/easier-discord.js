@@ -1,7 +1,7 @@
 module.exports = {
 name: "$cooldown",
 usage: "[time in ms;error message]",
-description: "make cooldown for author id in this guild use {getTime} to get the time\nExample: ```js\n$send[$channelId[];hi]\n$cooldown[3000;don't spam, wait for {getTime}]```",
+description: "make cooldown for author id in this guild use {getTime} to get the time\nExample: \n```js\n$send[$channelId[];hi]\n$cooldown[3000;don't spam, wait for {getTime}]\n```",
 code: async (d) => {
 let [time, err = ""] = d.data.splits;
 err = err.addB();
