@@ -8,10 +8,9 @@ code: async (d) => {
    let channel = await client.channels.cache.get(id);
    if(!channel) channel = await client.channels.fetch(id, {force: true});
    if(!channel) return d.sendError(d, "Invalid channel id provided");
-   msg = msg == undefined || msg == "" ? " " : msg;
    let mess;
    try {
-  await channel.send(d.util.embedParser(message));
+  await channel.send(d.util.embedParser(msg));
   }
 catch(e) {
 return d.sendError(d, e)
