@@ -18,7 +18,7 @@ embed.color = Inside(sp, "color");
 };
 embeds.push(embed)
 
-content.replace("{createEmbed:" + inside + "}", "")
+content = content.replace("{createEmbed:" + inside + "}", "")
   }
 return {content: content, embeds: embeds};
 }
@@ -31,7 +31,7 @@ return sp.includes(`{${text}:`)
 }
 
 function Inside (sp, text) {
- const a = sp.split("{" + + text + ":")[1].split("}")
+ const a = sp.split("{" + text + ":")[1].split("}")
  return a[0]
   }
 
