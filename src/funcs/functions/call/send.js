@@ -6,7 +6,8 @@ code: async (d) => {
    let [id, msg, returns] = d.data.splits;
    const client = d.client;
    let channel = await client.channels.cache.get(id);
-   if(!channel) channel = await client.channels.fetch(id, {force: false});
+   if(!channel) channel = await client.channels.fetch(id, {force: true});
+   if(!channel) return d.sendError(d, "Invalid channel id provided");
    msg = msg == undefined || msg == "" ? " " : msg;
    let mess;
    try {
