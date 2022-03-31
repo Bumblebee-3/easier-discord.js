@@ -5,11 +5,11 @@ description: "if condition is false it'll stop function execution and return err
 code: async (d) => {
 const check = require("../../../handler/checkCondition.js")
  const [condition, ms] = d.data.splits
- 
+ const mss = d.util.embedParser(ms);
 let cond = check(condition)
 d.msg.error = !cond
    
-d.msg.error && ms?.trim() !== "" ? d.msg.channel.send(`${ms.addB()}`) : ""
+d.msg.error && ms?.trim() !== "" ? d.msg.channel.send(`${mss}`) : ""
 
   return ""
 }
