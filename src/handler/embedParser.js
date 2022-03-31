@@ -6,7 +6,7 @@ const raw = message.split("{createEmbed:").slice(1);
 for(const sp of raw) {
 let embed = {};
 let fields = [];
-let inside = sp.slice(0, sp.lastIndexOf("}"));
+let insides = sp.slice(0, sp.lastIndexOf("}"));
 if(Check(sp, "title")) {
 const inside = Inside (sp, "title").split(":");
 embed.title = title[0]?.addB()
@@ -32,7 +32,7 @@ if(inside1 !== undefined) embed.author.icon_url = inside1?.addB();
 
 embeds.push(embed)
 
-content = content.replace("{createEmbed:" + inside + "}", "")
+content = content.replace("{createEmbed:" + insides + "}", "")
   }
 return {content: content?.addB(), embeds: embeds};
 }
