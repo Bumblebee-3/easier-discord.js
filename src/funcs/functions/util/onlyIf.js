@@ -9,7 +9,7 @@ const check = require("../../../handler/checkCondition.js")
 let cond = check(condition)
 d.msg.error = !cond
    
-d.msg.error && ms?.trim() !== "" ? d.msg.channel.send(`${mss}`) : ""
+d.msg.error && ms?.trim() !== "" ? d.msg.channel.send(mss) : ""
 
   return ""
 }
