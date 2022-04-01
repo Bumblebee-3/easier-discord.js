@@ -4,7 +4,7 @@ usage: "[time in ms;error message (optional)]",
 description: "make cooldown for author id in this guild use {getTime} to get the time\nExample: \n```js\n$send[$channelId[];hi]\n$cooldown[3000;don't spam, wait for {getTime}]\n```",
 code: async (d) => {
 let [time, err = ""] = d.data.splits;
-err = d.util.embedParser(err);
+err = d.util.embedParser(err.trim());
 time = Number(time);
 if(isNaN(time)) return d.sendError(d, "Invalid time provided, make sure it's in ms");
 let Db = d.db.get(`cooldown_${d.cmd}_${d.author?.id}_${d.guild?.id || 'dm'}`)
@@ -14,7 +14,7 @@ if(!Db) {
   d.db.set(`cooldown_${d.cmd}_${d.author?.id}_${d.guild?.id || 'dm'}`, times)
   } 
 else if (Date.now() < Db) {
-  if(err.trim() == "") {
+  if(err == "") {
     }
   else {
 const diff = Db - Date.now();
