@@ -14,7 +14,7 @@ return d.sendError(d, "Failed to interact to provided link with reason: " + e)
 })
 res = res?.data;
 let property = properties?.addB();
-let result = property?.trim() != "" ? eval(`res?.${property}`) : JSON.stringify(res).delB();
+let result = (property?.trim() != "" ? eval(`res?.${property}`) : JSON.stringify(res)).delB();
 return typeof result === "object" ? require ("util").inspect(result, {depth:0})?.delB() : result?.delB();
 }
 }
