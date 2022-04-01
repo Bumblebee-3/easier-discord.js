@@ -28,7 +28,6 @@ if(typeof code === "string") {
   let datas = DaTa || {isError: false, suppressErrors: false};
   let functions = search(split).reverse()
 for (const func of functions) {
-    msg.error = false
   const regEscape = v => v.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 
 let params = code.split(new RegExp (regEscape(func), "gi"))
@@ -60,7 +59,7 @@ let replacer = await require("../funcs/replacer.js")({name: func, inside: params
   let messagee = message?.msg || message
 // let d = data.name
 /*function err (d, message) {
-  d.msg.error = true
+  d.data.datas.isError = true
   d.msg.channel.send(`\`${d.data.name} error: ${message}\``)
   }*/
   let data = {}
