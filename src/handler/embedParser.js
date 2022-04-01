@@ -5,7 +5,7 @@ let embeds = [];
 const raw = message.split("{createEmbed:").slice(1);
 for(const sp of raw) {
 let embed = {};
-let fields = [];
+embed.fields = [];
 let insides = sp.slice(0, sp.lastIndexOf("}"));
 if(Check(insides, "title")) {
 const title = Inside (insides, "title").split(":");
@@ -32,6 +32,11 @@ if(Check(insides, "authorUrl")) {
 if(embed.author) {
 embed.author.url = Inside(insides, "authorUrl");
   }
+};
+
+if(Check(insides, "field")) {
+const inside = Inside(insides, "field").split(":");
+embed.fields.push({name: inside[0]?.addB(), value: inside[1]?.addB(), inline: inside[2] ? inside[2] === "yes" : false})
 };
 
 embeds.push(embed)
