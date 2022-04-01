@@ -36,7 +36,7 @@ embed.author.url = Inside(insides, "authorUrl")?.addB();
 if(Check(insides, "field")) {
 const ins = insides.split("{field:").slice(1);
 for(const uh of ins) {
-const insides = uh.split("}")[0];
+const insides = "{field:" + uh.split("}")[0] + "}";
 const inside = Inside(insides, "field").split(":");
 embed.fields.push({name: inside[0]?.addB(), value: inside[1]?.addB(), inline: inside[2] ? inside[2] === "yes" : false})
   }
