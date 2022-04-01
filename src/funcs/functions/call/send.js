@@ -10,7 +10,7 @@ code: async (d) => {
    if(!channel) return d.sendError(d, "Invalid channel id provided");
    let mess;
    try {
-  await channel.send(d.util.embedParser(msg));
+ mess = await channel.send(d.util.embedParser(msg));
   }
 catch(e) {
 return d.sendError(d, e)
