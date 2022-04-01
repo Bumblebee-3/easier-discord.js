@@ -55,7 +55,7 @@ embeds.push(embed)
 
 content = content.replace("{createEmbed:" + insides + "}", "")
   }
-return {content: content?.addB(), embeds: embeds};
+return {content: content === "" ? " " : content?.addB(), embeds: embeds};
 }
 else return message?.addB();
 }
