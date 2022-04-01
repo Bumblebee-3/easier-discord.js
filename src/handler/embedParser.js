@@ -44,7 +44,7 @@ if(Check(insides, "footer")) {
 const inside = Inside(insides, "footer").split(":");
 embed.footer = {};
 embed.footer.text = inside[0]?.addB()
-if(inside[1] !== undefined) embed.footer.icon_url = inside.slice(1);
+if(inside[1] !== undefined) embed.footer.icon_url = inside.slice(1)?.addB();
 };
 
 embeds.push(embed)
