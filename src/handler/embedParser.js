@@ -33,10 +33,18 @@ if(embed.author) {
 embed.author.url = Inside(insides, "authorUrl");
   }
 };
-
 if(Check(insides, "field")) {
 const inside = Inside(insides, "field").split(":");
 embed.fields.push({name: inside[0]?.addB(), value: inside[1]?.addB(), inline: inside[2] ? inside[2] === "yes" : false})
+};
+if(Check(insides, "image")) {
+embed.image = {url: Inside(insides, "image")?.addB()};
+};
+if(Check(insides, "footer")) {
+const inside = Inside(insides, "footer").split(":");
+embed.footer = {};
+embed.footer.text = inside[0]?.addB()
+if(inside[1] !== undefined) embed.footer.icon_url = inside.slice(1);
 };
 
 embeds.push(embed)
