@@ -2,7 +2,7 @@ module.exports = async (data, name, db, message, client, error, real) => {
    /* const parse = fs.readdirSync(__dirname + "/functions")*/
 
 function err (d, message) {
-d.msg.error = true
+d.data.datas.isError = true
 d.msg.channel.send(`\`${d.data.name} error: ${message}\``)
 }
 const util = {};
