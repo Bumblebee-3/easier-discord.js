@@ -24,13 +24,13 @@ embed.thumbnail = {url: Inside(insides, "thumbnail")?.addB()};
 if(Check(insides, "author")) {
 embed.author = {};
 const inside = Inside(insides, "author").split(":");
-embed.author.name = inside[0].addB();
+embed.author.name = inside[0]?.addB();
 const inside1 = inside.slice(1).join(":");
 if(inside1 !== undefined) embed.author.icon_url = inside1?.addB();
 };
 if(Check(insides, "authorUrl")) {
 if(embed.author) {
-embed.author.url = Inside(insides, "authorUrl");
+embed.author.url = Inside(insides, "authorUrl")?.addB();
   }
 };
 if(Check(insides, "field")) {
