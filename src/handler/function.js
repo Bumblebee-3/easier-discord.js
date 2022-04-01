@@ -25,7 +25,7 @@ if(func.length == 1) {
 return Fin
 }
 if(typeof code === "string") {
-  let datas = DaTa || {};
+  let datas = DaTa || {isError: false, suppressErrors: false};
   let functions = search(split).reverse()
 for (const func of functions) {
     msg.error = false
@@ -51,20 +51,20 @@ break;
 params = params.substring(1, param + 1)
 
 let splitted = params.split(";")
-let replacer = await require("../funcs/replacer.js")({name: func, inside: params, splits: splitted.map(z => z == "" ? undefined : z), all: func + "[" + params + "]", datas: datas}, name, db, msg, client, msg.error, real)
+let replacer = await require("../funcs/replacer.js")({name: func, inside: params, splits: splitted.map(z => z == "" ? undefined : z), all: func + "[" + params + "]", datas: datas}, name, db, msg, client, datas.isError, real)
  code = code.replaceLast(func + "[" + params + "]", replacer)
-    if(msg.error) break;
+    if(datas.isError) break;
 }
 } else {
   let message = msg
   let messagee = message?.msg || message
 // let d = data.name
-function err (d, message) {
+/*function err (d, message) {
   d.msg.error = true
   d.msg.channel.send(`\`${d.data.name} error: ${message}\``)
-  }
+  }*/
   let data = {}
-let all = {db: db, data: data, msg: messagee, message: messagee, author: message.author, channel: message.channel, guild: message.guild, member: message.member, mentions: message.mentions, client: client, cmd: name, error: msg.error, this: real, sendError: err}
+let all = {db: db, data: data, msg: messagee, message: messagee, author: message.author, channel: message.channel, guild: message.guild, member: message.member, mentions: message.mentions, client: client, cmd: name, error: msg.error, this: real} // sendError: err}
 
   code(all)
 }
