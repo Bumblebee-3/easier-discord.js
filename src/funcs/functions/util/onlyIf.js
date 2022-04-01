@@ -7,9 +7,9 @@ const check = require("../../../handler/checkCondition.js")
  const [condition, ms] = d.data.splits
  const mss = d.util.embedParser(ms);
 let cond = check(condition)
-d.msg.error = !cond
+d.data.datas.isError = !cond
    
-d.msg.error && ms?.trim() !== "" ? d.msg.channel.send(mss) : ""
+d.data.datas.isError && ms?.trim() !== "" ? d.msg.channel.send(mss) : ""
 
   return ""
 }
