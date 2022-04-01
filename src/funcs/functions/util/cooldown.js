@@ -19,11 +19,11 @@ if(!Db) {
   } 
 else if (Date.now() < Db) {
   if(err == "") {
-d.msg.error = true;
+d.data.datas.isError = true;
     }
   else {
 d.channel.send(err)
-d.msg.error = true;
+d.data.datas.isError = true;
     }
 }
   else {
