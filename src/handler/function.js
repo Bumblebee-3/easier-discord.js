@@ -25,7 +25,7 @@ if(func.length == 1) {
 return Fin
 }
 if(typeof code === "string") {
-  let datas = DaTa || {isError: false, suppressErrors: false};
+  var datas = DaTa || {isError: false, suppressErrors: false};
   let functions = search(split).reverse()
 for (const func of functions) {
   const regEscape = v => v.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
