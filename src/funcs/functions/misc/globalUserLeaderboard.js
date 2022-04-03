@@ -5,7 +5,6 @@ description: "create leaderboard for every users in all guild\nAvailable keyword
 code: async (d) => {
 const [varName, texts = "{position}. {name} : {value}", list = 10, page = 1] = d.data.splits;
 if(!d.this.variable.has(varName)) return d.sendError(d, "Invalid variable name provided");
-const guild = Array.from(d.client.guilds.cache).map(z => z[0]);
 let dbs = d.db.all().filter(z => z.key.startsWith(varName) && z.key.split("_").length === 2);
 let i = 1;
 let lb = [];
