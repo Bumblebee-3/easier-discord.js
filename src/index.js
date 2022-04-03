@@ -56,8 +56,9 @@ await require("./handler/command/botLeave.js")(guild, this)
       debug('Bot#onMessage')
     this.client.on("messageCreate", async (msg) => {
       debug('Bot#onMessage:func')
-        await require("./handler/command/default.js")(msg, this.client, this.db, this.cmd, this)
-        })
+        await require("./handler/command/default.js")(msg, this);
+        await require("./handler/command/always.js")(msg, this)
+      })
     }
     
     onMemberJoin() {
