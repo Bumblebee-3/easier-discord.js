@@ -26,6 +26,9 @@ lb.push(text)
 
 i += 1
      }
+const x = page * list - list;
+const y = page * list;
+lb = lb.slice(x, y);
 return lb.join("\n")
    }
 }
