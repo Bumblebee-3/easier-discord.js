@@ -85,7 +85,7 @@ await require("./handler/command/memberLeave.js")(member, this)
     command(...opts) {
       debug('Bot#command', opts)
     for( const opt of opts) { 
-        this.cmd.default.set(opt.name.toLowerCase(), opt)
+    this.cmd[opt?.name !== "$always" ? "default" : "alwaysExecute"].set(opt.name.toLowerCase(), opt)
         }
       }
 
