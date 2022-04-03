@@ -4,7 +4,7 @@ usage: "[varName;text(optional);list(optional);page(optional);guildId(optional)]
 description: "create leaderboard for users in the provided guild id\nAvailable keyword for text: `{position}` to get user position at the leaderboard\n`{name}` user name\n`{tag}` user tag\n`{value}` to get the variable value for the user\nExample: \n```\n$userLeaderBoard[coin;{position}. {name} : {value}]\n```",
 code: async (d) => {
 const [varName, texts = "{position}. {name} : {value}", list = 10, page = 1, guildID = d.guild?.id] = d.data.splits;
-
+if(!d.this.variable.has(varName)) return d.sendError(d, "Invalid variable name provided");
 let text = texts;
 const guild = d.client.guilds.cache.get(guildID);
 let dbs = d.db.all().filter(z => z.key.startsWith(varName));
