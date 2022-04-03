@@ -18,13 +18,14 @@ const uid = db.key.split("_")[2];
 let user = await guild.members.cache.get(uid);
 if(!user) user = await guild.members.fetch(uid, {force: true});
 if(user) {
+let result = "";
 user = user.user
-text = text.replace(/\{position\}/g, i);
-text = text.replace(/\{name\}/g, user.username);
-text = text.replace(/\{id\}/g, user.id);
-text = text.replace(/\{tag\}/g, user.tag);
-text = text.replace(/\{value\}/g, db.value);
-lb.push(text)
+result = text.replace(/\{position\}/g, i);
+result = text.replace(/\{name\}/g, user.username);
+result = text.replace(/\{id\}/g, user.id);
+result = text.replace(/\{tag\}/g, user.tag);
+result = text.replace(/\{value\}/g, db.value);
+lb.push(result)
 }
 
 i += 1
