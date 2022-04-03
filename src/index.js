@@ -39,6 +39,19 @@ let dirFolder = path.join(__dirname, "funcs", "functions");
  });
         }
     //events
+
+   onBotJoin() {
+this.client.on("guildCreate", async (guild) => {
+await require("./handler/command/botJoin.js")(guild, this)
+})
+}
+
+   onBotLeave() {
+this.client.on("guildDelete", async (guild) => {
+await require("./handler/command/botLeave.js")(guild, this)
+})
+}
+
     onMessage() {
       debug('Bot#onMessage')
     this.client.on("messageCreate", async (msg) => {
@@ -60,6 +73,14 @@ await require("./handler/command/memberLeave.js")(member, this)
 
 
     //commands
+
+    botJoinCommand(opt) {
+     this.cmd.botJoin.set(this.cmd.botJoin.size, opt)
+   }
+
+    botLeaveCommand(opt) {
+     this.cmd.botLeave.set(this.cmd.botLeave.size, opt)
+   }
 
     command(...opts) {
       debug('Bot#command', opts)
