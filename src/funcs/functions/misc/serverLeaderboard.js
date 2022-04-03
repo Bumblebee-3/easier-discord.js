@@ -14,8 +14,8 @@ for(const db of dbs.sort((a, b) => {
 return Number(b.value) - Number(a.value)
         })) {
 const sid = db.key.split("_")[1];
-let server = d.client.guilds.cache.get(sid);
-if(!server) server = d.client.guilds.fetch(sid, {force: true});
+let server = await d.client.guilds.cache.get(sid);
+if(!server) server = await d.client.guilds.fetch(sid, {force: true});
 if(server) {
 let text = texts;
 text = text.replace(/\{position\}/g, i);
