@@ -1,5 +1,8 @@
 let debug = require('debug')("ez:commands")
-module.exports = async (msg, client, db, cmd, real) => {
+module.exports = async (msg, real) => {
+    const client = real.client;
+    const db = real.db;
+    const cmd = real.cmd;
     let lower = msg.content.toLowerCase();
     let body = lower.replace(client.prefix, "").trim();
     let name = Array.from(cmd.default).filter(z => body.startsWith(z[0])).map(z=>z[0]).toString();
