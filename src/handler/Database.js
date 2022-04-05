@@ -42,7 +42,7 @@ class Db {
     const split = all.split(sep);
 
     let find = split.find(z => z.startsWith(name + ":"))
-    return {key: name, value: find?.split(":")?.slice(1)?.join(":")?.replace(new RegExp(sepEach, "g"), "")}
+    return {key: namae, value: find?.split(":")?.slice(1)?.join(":")?.replace(new RegExp(sepEach, "g"), "")}
   }
 
   async all() {
@@ -54,7 +54,7 @@ class Db {
     let array = []
     for (let i = 0; i < s.length; i++) {
       array.push({
-        key: s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(0, 1).join(":"), value: this.get(s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(0, 1).join(":"))})
+        key: s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(0, 1).join(":"), value: this.get(s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(0, 1).join(":")).value})
 
     }
     return array
