@@ -4,14 +4,14 @@ const fs = require("fs");
 const fsp = require("fs/promises");
 const path = require("path");
 
-async function set(path, table, value) {
+async function set(pathh, table, value) {
 
-  await fsp.writeFile(path.join(process.cwd(), path, table, "meat.db"), value)
+  await fsp.writeFile(path.join(process.cwd(), pathh, table, "meat.db"), value)
 
 }
 
-async function get(path, table) {
-  const all = await fsp.readFile(path.join(process.cwd(), path, table, "meat.db"))
+async function get(pathh, table) {
+  const all = await fsp.readFile(path.join(process.cwd(), pathh, table, "meat.db"))
   return all;
 }
 
