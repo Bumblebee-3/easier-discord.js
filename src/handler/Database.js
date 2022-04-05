@@ -26,20 +26,21 @@ class Db {
   async set(namae, valuae) {
     valuae = valuae.toString();
     namae = namae.toString();
-    const all = await get(this.path, this.table);
+    const all = this.text;
     const name = Array.from(namae).join(sepEach);
     const value = Array.from(valuae).join(sepEach);
     const split = all.split(sep);
 
     let find = split.find(z => z.startsWith(name + ":"))
+    const val = find === undefined ? all + sep + name + ":" + value: all.replace(find, name + ":" + value);
+    this.text = val
 
-
-   await set(this.path, this.table, find === undefined ? all + sep + name + ":" + value: all.replace(find, name + ":" + value))
+   await set(this.path, this.table, val)
 
   }
 
   async get(namae) {
-    const all = await get(this.path, this.table);
+    const all = this.text;
     const name = Array.from(namae).join(sepEach);
     const split = all.split(sep);
     let find = split.find(z => z.startsWith(name + ":"))
@@ -48,7 +49,7 @@ class Db {
   }
 
   async all() {
-    const all = await get(this.path, this.table);
+    const all = this.text;
     const s = all.split(sep).filter(z => {
       return z !== ""
     });
@@ -86,6 +87,7 @@ async ping() {
       return;
 
     };
+   this.text = fs.readFileSync(path.join(process.cwd(), this.path, this.table, "meat.db"), "utf8")
   }
 }
 
