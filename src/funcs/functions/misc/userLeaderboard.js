@@ -6,7 +6,8 @@ code: async (d) => {
 const [varName, texts = "{position}. {name} : {value}", list = 10, page = 1, guildID = d.guild?.id] = d.data.splits;
 if(!d.this.variable.has(varName)) return d.sendError(d, "Invalid variable name provided");
 const guild = d.client.guilds.cache.get(guildID);
-let dbs = d.db.all().filter(z => z.key.startsWith(varName) && z.key.split("_").length === 3);
+let dbs = await d.db.all()
+dbs = dbs.filter(z => z.key.startsWith(varName) && z.key.split("_").length === 3);
 dbs = dbs.filter(z => z.key.split("_")[1] === guildID);
 let i = 1;
 let lb = [];
