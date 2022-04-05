@@ -24,6 +24,8 @@ class Db {
   }
 
   async set(namae, valuae) {
+    valuae = valuae.toString();
+    namae = namae.toString();
     const all = await get(this.path, this.table);
     const name = Array.from(namae).join(sepEach);
     const value = Array.from(valuae).join(sepEach);
