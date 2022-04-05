@@ -11,7 +11,7 @@ async function set(pathh, table, value) {
 }
 
 async function get(pathh, table) {
-  const all = await fsp.readFile(path.join(process.cwd(), pathh, table, "meat.db"))
+  const all = await fsp.readFile(path.join(process.cwd(), pathh, table, "meat.db"), "utf8")
   return all;
 }
 
