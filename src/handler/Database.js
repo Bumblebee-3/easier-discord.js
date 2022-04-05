@@ -54,7 +54,7 @@ class Db {
     let array = []
     for (let i = 0; i < s.length; i++) {
       array.push({
-        key: s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(0, 1).join(":"), value: get(s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(0, 1).join(":"))})
+        key: s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(0, 1).join(":"), value: this.get(s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(0, 1).join(":"))})
 
     }
     return array
