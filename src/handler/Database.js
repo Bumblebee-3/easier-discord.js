@@ -88,6 +88,7 @@ async ping() {
 
     };
    this.text = fs.readFileSync(path.join(process.cwd(), this.path, this.table, "meat.db"), "utf8")
+   console.log("Database ready!")
   }
 }
 
