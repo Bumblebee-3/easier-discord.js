@@ -6,7 +6,7 @@ code: async (d) => {
 let [time, err = ""] = d.data.splits;
 time = Number(time);
 if(isNaN(time)) return d.sendError(d, "Invalid time provided, make sure it's in ms");
-let Db = d.db.get(`cooldown_${d.cmd}_${d.author?.id}_${d.guild?.id || 'dm'}`)
+let Db = await d.db.get(`cooldown_${d.cmd}_${d.author?.id}_${d.guild?.id || 'dm'}`)
 Db = Db?.value;
 const diff = Db - Date.now();
 const GetTime = Math.floor(diff / 86400000) + "d " + Math.floor(diff / 3600000 % 24) + "h " + Math.floor(diff / 60000 % 60) + "m " + Math.floor(diff / 1000 % 60) + "s";
@@ -15,7 +15,7 @@ err = err.replace(/\{getTime\}/g, GetTime)
 err = d.util.embedParser(err.trim());
 if(!Db) {
   const times = Date.now() + time;
-  d.db.set(`cooldown_${d.cmd}_${d.author?.id}_${d.guild?.id || 'dm'}`, times)
+  await d.db.set(`cooldown_${d.cmd}_${d.author?.id}_${d.guild?.id || 'dm'}`, times)
   } 
 else if (Date.now() < Db) {
   if(err == "") {
@@ -28,7 +28,7 @@ d.data.datas.isError = true;
 }
   else {
 const times = Date.now() + time;
-  d.db.set(`cooldown_${d.cmd}_${d.author?.id}_${d.guild?.id || 'dm'}`, times)
+  await d.db.set(`cooldown_${d.cmd}_${d.author?.id}_${d.guild?.id || 'dm'}`, times)
     }
   return "";
 }
