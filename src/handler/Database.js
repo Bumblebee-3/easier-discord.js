@@ -58,7 +58,7 @@ class Db {
     for (let i = 0; i < s.length; i++) {
      const db = s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(1).join(":");
       array.push({
-        key: s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(0, 1).join(":"), value: db.value})
+        key: s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(0, 1).join(":"), value: db})
 
     }
     return array
