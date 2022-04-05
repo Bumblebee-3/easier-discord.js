@@ -74,16 +74,16 @@ async ping() {
     if (fs.existsSync(path.join(process.cwd(), this.path)) == false) {
       fs.mkdirSync(path.join(process.cwd(), this.path));
       fs.mkdirSync(path.join(process.cwd(), this.path, this.table));
-      set(this.path, this.table, "")
+      fs.writeFileSync(path.join(process.cwd(), this.path, this.table, "meat.db"), "")
 
 
     } else if (fs.existsSync(path.join(process.cwd(), this.path, this.table)) == false) {
 
       fs.mkdirSync(path.join(process.cwd(), this.path, this.table));
-      set(this.path, this.table, "")
+      fs.writeFileSync(path.join(process.cwd(), this.path, this.table, "meat.db"), "")
  
     } else if (fs.existsSync(path.join(process.cwd(), this.path, this.table, "meat.db")) == false) {
-      set(this.path, this.table, "")
+      fs.writeFileSync(path.join(process.cwd(), this.path, this.table, "meat.db"), "")
 
     };
    this.text = fs.readFileSync(path.join(process.cwd(), this.path, this.table, "meat.db"), "utf8")
