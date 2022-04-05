@@ -34,7 +34,7 @@ let params = code.split(new RegExp (regEscape(func), "gi"))
 params = params[params.length - 1]
 let param = params;
 let a = 0;
-
+if(!params.startsWith("[")) continue;
 for(let i = 0;;i++) {
 if(param.charAt(i) == "[") {
 a++
