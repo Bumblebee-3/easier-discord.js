@@ -42,9 +42,9 @@ class Db {
     const all = await get(this.path, this.table);
     const name = Array.from(namae).join(sepEach);
     const split = all.split(sep);
-
+    const val = find?.split(":")?.slice(1)?.join(":")?.replace(new RegExp(sepEach, "g"), "");
     let find = split.find(z => z.startsWith(name + ":"))
-    return {key: namae, value: find?.split(":")?.slice(1)?.join(":")?.replace(new RegExp(sepEach, "g"), "")}
+    return {key: namae, value: Number(val) ? Number(val) : val}
   }
 
   async all() {
