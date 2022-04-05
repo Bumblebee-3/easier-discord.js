@@ -44,7 +44,7 @@ class Db {
     const split = all.split(sep);
     let find = split.find(z => z.startsWith(name + ":"))
     const val = find?.split(":")?.slice(1)?.join(":")?.replace(new RegExp(sepEach, "g"), "");
-    return {key: namae, value: Number(val) ? Number(val) : val}
+    return {key: namae, value: val}
   }
 
   async all() {
