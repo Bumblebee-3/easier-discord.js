@@ -12,7 +12,7 @@ class Bot {
     this.opt = opt
     this.client = {}
     this.prefix = opt.prefix
-    this.db = new Db.Create("main", opt?.database || {})
+    this.db = new Db({path: opt?.database?.path})
     this.cmd = require("./handler/commandType.js")
     this.functions = new newMap()
     this.variable = new newMap()
