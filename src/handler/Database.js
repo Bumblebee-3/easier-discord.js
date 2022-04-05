@@ -32,7 +32,7 @@ class Db {
     let find = split.find(z => z.startsWith(name + ":"))
 
 
-    set(this.path, this.table, find === undefined ? all + sep + name + ":" + value: text.replace(find, name + ":" + value))
+    set(this.path, this.table, find === undefined ? all + sep + name + ":" + value: all.replace(find, name + ":" + value))
 
   }
 
