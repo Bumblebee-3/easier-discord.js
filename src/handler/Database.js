@@ -79,7 +79,7 @@ async ping() {
       fs.mkdirSync(path.join(process.cwd(), this.path, this.table));
       set(this.path, this.table, "")
       return;
-    } else if (fs.existsSync(path.join(process.cwd(), this.path, this.table, "db.json")) == false) {
+    } else if (fs.existsSync(path.join(process.cwd(), this.path, this.table, "meat.db")) == false) {
       set(this.path, this.table, "")
       return;
 
