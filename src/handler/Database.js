@@ -24,8 +24,8 @@ class Db {
   }
 
   async set(namae, valuae) {
-    valuae = valuae.toString();
-    namae = namae.toString();
+    valuae = JSON.stringify(valuae);
+    namae = JSON.stringify(namae);
     const all = this.text;
     const name = Array.from(namae).join(sepEach);
     const value = Array.from(valuae).join(sepEach);
