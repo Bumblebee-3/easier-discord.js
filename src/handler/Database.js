@@ -69,7 +69,7 @@ const all = this.text;
 name = Array.from(name).join(sepEach);
 const split = all.split(sep);
 this.text = split.filter(z => {
-return !z.startsWith(name)
+return z.split(":")[0] !== name
 }).join(sep)
 }
 
