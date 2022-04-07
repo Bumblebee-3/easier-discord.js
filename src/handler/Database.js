@@ -64,6 +64,15 @@ class Db {
     return array
   }
 
+async delete (name) {
+const all = this.text;
+name = Array.from(name).join(sepEach);
+const split = all.split(sep);
+this.text = split.filter(z => {
+return !z.startsWith(name)
+}).join(sep)
+}
+
 async ping() {
   const now = Date.now();
     await this.all()
