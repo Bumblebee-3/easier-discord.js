@@ -73,6 +73,11 @@ return z.split(":")[0] !== name
 }).join(sep)
 }
 
+async has (name) {
+const db = await this.get(name);
+return db?.value;
+}
+
 async ping() {
   const now = Date.now();
     await this.all()
