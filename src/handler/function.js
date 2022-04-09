@@ -69,7 +69,7 @@ module.exports = async (
     }
   } else {
     let message = msg
-    let messagee = message?.msg || message
+    let messagee = message?.msg || message?.message || message
     // let d = data.name
     /*function err (d, message) {
   d.data.datas.isError = true
