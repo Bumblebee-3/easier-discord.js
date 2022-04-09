@@ -3,6 +3,6 @@ name: "$pingDb",
 usage: "[]",
 description: "return database ping",
 code: async (d) => {
-  return d.db.ping;
+  return await d.db.ping();
 }
 }

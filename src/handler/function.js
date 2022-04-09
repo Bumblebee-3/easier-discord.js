@@ -34,7 +34,7 @@ let params = code.split(new RegExp (regEscape(func), "gi"))
 params = params[params.length - 1]
 let param = params;
 let a = 0;
-
+if(!params.startsWith("[")) continue;
 for(let i = 0;;i++) {
 if(param.charAt(i) == "[") {
 a++
@@ -64,7 +64,9 @@ let replacer = await require("../funcs/replacer.js")({name: func, inside: params
   }*/
   let data = {}
 let all = {db: db, data: data, msg: messagee, message: messagee, author: message.author, channel: message.channel, guild: message.guild, member: message.member, mentions: message.mentions, client: client, cmd: name, error: msg.error, this: real} // sendError: err}
-
+let arg = all.msg?.content?.replace(all.client?.prefix, "").replace(all.cmd, "");
+arg = arg?.trim();
+all.arg = arg;
   code(all)
 }
 return code

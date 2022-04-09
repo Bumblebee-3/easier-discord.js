@@ -2,7 +2,7 @@ const getVersion = require ("./handler/version.js");
 const version = require("../package.json").version;
 const Discord = require("discord.js")
 const newMap = require("./cache/newMap.js")
-const Db = require("json-db-easier")
+const Db = require("./handler/Database.js")
 const fs = require("fs")
 const path = require("path")
 const debug = require("debug")("ez:main")
@@ -12,7 +12,7 @@ class Bot {
     this.opt = opt
     this.client = {}
     this.prefix = opt.prefix
-    this.db = new Db.Create("main", opt?.database || {})
+    this.db = new Db({path: opt?.database?.path})
     this.cmd = require("./handler/commandType.js")
     this.functions = new newMap()
     this.variable = new newMap()
