@@ -35,7 +35,7 @@ class Db {
     const val = find === undefined ? all + sep + name + ":" + value: all.replace(find, name + ":" + value);
     this.text = val
 
-   await set(this.path, this.table, val)
+    await set(this.path, this.table, val)
 
   }
 
@@ -45,7 +45,10 @@ class Db {
     const split = all.split(sep);
     let find = split.find(z => z.startsWith(name + ":"))
     const val = find?.split(":")?.slice(1)?.join(":")?.replace(new RegExp(sepEach, "g"), "");
-    return {key: namae, value: val}
+    return {
+      key: namae,
+      value: val
+    }
   }
 
   async all() {
@@ -56,33 +59,34 @@ class Db {
 
     let array = []
     for (let i = 0; i < s.length; i++) {
-     const db = s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(1).join(":");
+      const db = s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(1).join(":");
       array.push({
-        key: s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(0, 1).join(":"), value: db})
+        key: s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(0, 1).join(":"), value: db
+      })
 
     }
     return array
   }
 
-async delete (name) {
-const all = this.text;
-name = Array.from(name).join(sepEach);
-const split = all.split(sep);
-this.text = split.filter(z => {
-return z.split(":")[0] !== name
-}).join(sep)
-}
+  async delete (name) {
+    const all = this.text;
+    name = Array.from(name).join(sepEach);
+    const split = all.split(sep);
+    this.text = split.filter(z => {
+      return z.split(":")[0] !== name
+    }).join(sep)
+  }
 
-async has (name) {
-const db = await this.get(name);
-return db?.value;
-}
+  async has (name) {
+    const db = await this.get(name);
+    return db?.value;
+  }
 
-async ping() {
-  const now = Date.now();
+  async ping() {
+    const now = Date.now();
     await this.all()
     return Date.now() - now;
-}
+  }
 
   start() {
     if (fs.existsSync(path.join(process.cwd(), this.path)) == false) {
@@ -95,13 +99,13 @@ async ping() {
 
       fs.mkdirSync(path.join(process.cwd(), this.path, this.table));
       fs.writeFileSync(path.join(process.cwd(), this.path, this.table, "meat.db"), "")
- 
+
     } else if (fs.existsSync(path.join(process.cwd(), this.path, this.table, "meat.db")) == false) {
       fs.writeFileSync(path.join(process.cwd(), this.path, this.table, "meat.db"), "")
 
     };
-   this.text = fs.readFileSync(path.join(process.cwd(), this.path, this.table, "meat.db"), "utf8")
-   console.log("Database ready!")
+    this.text = fs.readFileSync(path.join(process.cwd(), this.path, this.table, "meat.db"), "utf8")
+    console.log("Database ready!")
   }
 }
 
