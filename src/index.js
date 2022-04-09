@@ -12,7 +12,9 @@ class Bot {
     this.opt = opt
     this.client = {}
     this.prefix = opt.prefix
-    this.db = new Db({path: opt?.database?.path})
+    this.db = new Db({
+      path: opt?.database?.path
+    })
     this.cmd = require("./handler/commandType.js")
     this.functions = new newMap()
     this.variable = new newMap()
@@ -94,6 +96,29 @@ class Bot {
     this.cmd.executable.set(opt.name.toLowerCase(), opt)
   }
 
+  intervalCommand(opt) {
+    (async() => {
+      const commandData = opt.channel?.includes("$") ? await require("./handler/function.js")(
+        opt.channel,
+        "channel",
+        this.db,
+        {},
+        this.client,
+        this
+      ) : opt.channel
+      setInterval(async () => {
+        await require("./handler/function.js")(
+          opt.code,
+          "intervalCommand",
+          this.db,
+          commandData,
+          this.client,
+          this
+        )
+      }, opt.every)
+    })()
+  }
+
   memberJoinCommand(opt) {
     this.cmd.memberJoin.set(this.cmd.memberJoin.size, opt)
   }
@@ -116,7 +141,7 @@ class Bot {
     }
   }
 
-  async  login(token) {
+  async login(token) {
     debug('Bot#login')
     const current = await getVersion();
     if (current != version && current !== undefined) console.log("your version is probably old\ncurrent version: " + current + "\nyour version: " + version);
