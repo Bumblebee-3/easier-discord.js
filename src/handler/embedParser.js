@@ -1,7 +1,7 @@
 function parse (message) {
 let content = message;
-if(message?.includes("{createEmbed:")) {
 let embeds = [];
+if(message?.includes("{createEmbed:")) {
 const raw = message.split("{createEmbed:").slice(1);
 for(const sp of raw) {
 let embed = {};
@@ -57,7 +57,7 @@ content = content.replace("{createEmbed:" + insides + "}", "")
   }
 return {content: content === "" ? " " : content?.addB(), embeds: embeds};
 }
-else return message?.addB();
+else return {content: message?.addB() || " ", embeds};
 }
 
 
