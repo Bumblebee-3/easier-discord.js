@@ -88,7 +88,12 @@ class Bot {
   command(...opts) {
     debug('Bot#command', opts)
     for (const opt of opts) {
-      this.cmd[opt?.name !== "$always" ? "default": "alwaysExecute"].set(opt.name.toLowerCase(), opt)
+      if(opt?.name !== "$always") {
+        this.cmd["default"].set(opt.name.toLowerCase(), opt)
+      }
+      else {
+        this.cmd["alwaysExecute"].set(this.cmd.alwaysExecute.size, opt)
+      }
     }
   }
 
