@@ -1,6 +1,6 @@
 function parse (message) {
 let content = message;
-if(message.includes("{createEmbed:")) {
+if(message?.includes("{createEmbed:")) {
 let embeds = [];
 const raw = message.split("{createEmbed:").slice(1);
 for(const sp of raw) {
