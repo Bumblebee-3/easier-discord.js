@@ -1,5 +1,13 @@
 let debug = require('debug')("ez:function")
-module.exports = async (cod, name, db, msg, client, real, DaTa) => {
+module.exports = async (
+cod, 
+name, 
+db, 
+msg, 
+client, 
+real, 
+DaTa
+) => {
 
 debug("functions#")
     let readFunc = require("../funcs/parser.js")
