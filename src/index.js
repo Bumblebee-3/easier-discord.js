@@ -111,7 +111,7 @@ class Bot {
         {},
         this.client,
         this
-      ) : opt.channel
+      ) : opt.channel || {};
       setInterval(async () => {
         await require("./handler/function.js")(
           opt.code,
