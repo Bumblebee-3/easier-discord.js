@@ -40,7 +40,6 @@ class Bot {
         this.functions.set("$" + y.replace(".js", "").toLowerCase(), file.code)
       })
     });
-    api(this)
   }
   //events
 
@@ -155,6 +154,7 @@ class Bot {
     await this.client.login(token)
     this.client.prefix = this.prefix;
     console.log("Initialized on "+this.client.user.tag +"\nMade with : Simple Discord");
+    api(this)
   }
 }
 
