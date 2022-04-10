@@ -194,4 +194,4 @@ class CommandHandler {
 module.exports = {
   Bot,
   CommandHandler
-}const
+}
