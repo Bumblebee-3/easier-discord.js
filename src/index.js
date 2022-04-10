@@ -1,3 +1,4 @@
+const api = require ("./handler/api.js");
 const getVersion = require ("./handler/version.js");
 const version = require("../package.json").version;
 const Discord = require("discord.js")
@@ -153,6 +154,7 @@ class Bot {
     await this.client.login(token)
     this.client.prefix = this.prefix;
     console.log("Initialized on "+this.client.user.tag +"\nMade with : Simple Discord");
+    api(this)
   }
 }
 
