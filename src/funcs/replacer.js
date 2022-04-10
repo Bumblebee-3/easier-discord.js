@@ -2,8 +2,12 @@ module.exports = async (data, name, db, message, client, error, real) => {
    /* const parse = fs.readdirSync(__dirname + "/functions")*/
 
 function err (d, message) {
+if(d.msg?.channel === undefined) {
+console.error(`\`${d.data.name} error: ${message}\``)
+  } else {
 d.data.datas.isError = true
 d.msg.channel.send(`\`${d.data.name} error: ${message}\``)
+  }
 }
 const util = {};
 util.embedParser = require ("../handler/embedParser.js");
