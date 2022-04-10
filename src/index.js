@@ -89,10 +89,9 @@ class Bot {
   command(...opts) {
     debug('Bot#command', opts)
     for (const opt of opts) {
-      if(opt?.name !== "$always") {
+      if (opt?.name !== "$always") {
         this.cmd["default"].set(opt.name.toLowerCase(), opt)
-      }
-      else {
+      } else {
         this.cmd["alwaysExecute"].set(this.cmd.alwaysExecute.size, opt)
       }
     }
@@ -111,7 +110,7 @@ class Bot {
         {},
         this.client,
         this
-      ) : opt.channel || {};
+      ): opt.channel || {};
       setInterval(async () => {
         await require("./handler/function.js")(
           opt.code,
@@ -122,26 +121,40 @@ class Bot {
           this
         )
       }, opt.every)
+      if (opt?.onStartup === true) {
+        await require("./handler/function.js")(
+          opt.code,
+          "intervalCommand",
+          this.db,
+          commandData,
+          this.client,
+          this
+        )
+      }
     })()
   }
 
   memberJoinCommand(opt) {
-    this.cmd.memberJoin.set(this.cmd.memberJoin.size, opt)
+    this.cmd.memberJoin.set(this.cmd.memberJoin.size,
+      opt)
   }
 
   memberLeaveCommand(opt) {
-    this.cmd.memberLeave.set(this.cmd.memberLeave.size, opt)
+    this.cmd.memberLeave.set(this.cmd.memberLeave.size,
+      opt)
   }
 
   ready(opt) {
-    this.client.on("ready", async () => {
-      await require ("./handler/function.js")(opt.code, undefined, this.db, {}, this.client, this)
-    })
+    this.client.on("ready",
+      async () => {
+        await require ("./handler/function.js")(opt.code, undefined, this.db, {}, this.client, this)
+      })
   }
 
 
   variables(opt) {
-    debug('Bot#variables', opt)
+    debug('Bot#variables',
+      opt)
     for (const [name, value] of Object.entries(opt)) {
       this.variable.set(name, value)
     }
@@ -181,4 +194,4 @@ class CommandHandler {
 module.exports = {
   Bot,
   CommandHandler
-}
+}const
