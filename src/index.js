@@ -1,3 +1,4 @@
+const api = require ("./handler/api.js");
 const getVersion = require ("./handler/version.js");
 const version = require("../package.json").version;
 const Discord = require("discord.js")
@@ -39,6 +40,7 @@ class Bot {
         this.functions.set("$" + y.replace(".js", "").toLowerCase(), file.code)
       })
     });
+    api(this)
   }
   //events
 
