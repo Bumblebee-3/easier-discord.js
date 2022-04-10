@@ -1,5 +1,5 @@
-async function api (th) {
-  const axios = require("axios")
+const axios = require("axios")
+function api (th) {
   try {
     axios.post("https://api.pirles.tk/client", {
       id: th.client.user.id
