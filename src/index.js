@@ -21,6 +21,13 @@ class Bot {
     this.variable = new newMap()
     this.start()
     if (typeof this.prefix != "string") throw new Error("prefix must be string");
+    getVersion().then(z => {
+      const up = opt.autoUpdateVersion;
+      if (z != version && z !== undefined && up === true) {
+        console.log("Updating version... (autoUpdateVersion)")
+        require("child_process").exec("npm i https://github.com/Bumblebee-3/simpler-discord")
+      }
+    })
   }
   //start client
   start() {
@@ -30,7 +37,9 @@ class Bot {
     )
     this.client = client
     this.client.simpler = this
-    let dirFolder = path.join(__dirname, "funcs", "functions");
+    let dirFolder = path.join(__dirname,
+      "funcs",
+      "functions");
 
     let folders = fs.readdirSync(dirFolder)
     folders.forEach(x => {
@@ -44,50 +53,58 @@ class Bot {
   //events
 
   onBotJoin() {
-    this.client.on("guildCreate", async (guild) => {
-      await require("./handler/command/botJoin.js")(guild, this)
-    })
+    this.client.on("guildCreate",
+      async (guild) => {
+        await require("./handler/command/botJoin.js")(guild, this)
+      })
   }
 
   onBotLeave() {
-    this.client.on("guildDelete", async (guild) => {
-      await require("./handler/command/botLeave.js")(guild, this)
-    })
+    this.client.on("guildDelete",
+      async (guild) => {
+        await require("./handler/command/botLeave.js")(guild, this)
+      })
   }
 
   onMessage() {
     debug('Bot#onMessage')
-    this.client.on("messageCreate", async (msg) => {
-      debug('Bot#onMessage:func')
-      await require("./handler/command/default.js")(msg, this);
-      await require("./handler/command/always.js")(msg, this)
-    })
+    this.client.on("messageCreate",
+      async (msg) => {
+        debug('Bot#onMessage:func')
+        await require("./handler/command/default.js")(msg, this);
+        await require("./handler/command/always.js")(msg, this)
+      })
   }
 
   onMemberJoin() {
-    this.client.on("guildMemberAdd", async (member) => {
-      await require("./handler/command/memberJoin.js")(member, this)
-    })
+    this.client.on("guildMemberAdd",
+      async (member) => {
+        await require("./handler/command/memberJoin.js")(member, this)
+      })
   }
   onMemberLeave() {
-    this.client.on("guildMemberRemove", async (member) => {
-      await require("./handler/command/memberLeave.js")(member, this)
-    })
+    this.client.on("guildMemberRemove",
+      async (member) => {
+        await require("./handler/command/memberLeave.js")(member, this)
+      })
   }
 
 
   //commands
 
   botJoinCommand(opt) {
-    this.cmd.botJoin.set(this.cmd.botJoin.size, opt)
+    this.cmd.botJoin.set(this.cmd.botJoin.size,
+      opt)
   }
 
   botLeaveCommand(opt) {
-    this.cmd.botLeave.set(this.cmd.botLeave.size, opt)
+    this.cmd.botLeave.set(this.cmd.botLeave.size,
+      opt)
   }
 
   command(...opts) {
-    debug('Bot#command', opts)
+    debug('Bot#command',
+      opts)
     for (const opt of opts) {
       if (opt?.name !== "$always") {
         this.cmd["default"].set(opt.name.toLowerCase(), opt)
