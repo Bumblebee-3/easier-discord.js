@@ -47,7 +47,8 @@ class Bot {
     folders.forEach(x => {
       let files = fs.readdirSync(path.join(dirFolder, x)).filter(file => file.endsWith('js'))
       files.forEach(y => {
-        const file = require(`${path.join(dirFolder, x, y)}`)
+        const file = require(`$ {
+          path.join(dirFolder, x, y)}`)
         this.functions.set("$" + y.replace(".js", "").toLowerCase(), file.code)
       })
     });
@@ -201,7 +202,11 @@ class CommandHandler {
 
     let files = fs.readdirSync(dirFolder).filter(file => file.endsWith('js'))
     files.forEach(x => {
-      const theFile = require(`${dirFolder}/${x}`)
+      const theFile = require(`$ {
+        dirFolder
+      }/$ {
+        x
+      }`)
       const theCmd = this.bot.cmd[theFile?.type || "default"]
       if (theCmd !== undefined) theCmd.set(theFile.name, theFile)
       else console.warn("command type is invalid " + dirFolder + "/" + x);
