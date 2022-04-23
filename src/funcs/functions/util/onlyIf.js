@@ -3,7 +3,7 @@ name: "$onlyIf",
 usage: "[condition;error message(optional)]",
 description: "if condition is false it'll stop function execution and return error message\nExample: \n```js\n$send[$channelId[];hi]\n$onlyIf[$message[1]==hi;no hi]\n```",
 code: async (d) => {
-const check = require("../../../handler/checkCondition.js")
+const check = require("../../../handler/utils/checkCondition.js")
  const [condition, ms = ""] = d.data.splits
  const mss = d.util.embedParser(ms);
 let cond = check(condition)
