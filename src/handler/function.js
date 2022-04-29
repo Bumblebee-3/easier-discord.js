@@ -59,9 +59,10 @@ module.exports = async (
         }
       }
       params = params.substring(1, param + 1)
-      let funcLine = code.split("\n");
-      funcLine.forEach((text, index) => {
-          if(text?.toLowerCase()?.includes(func + "[" + params + "]")) funcLine = index;
+      let funcCode = code.split("\n");
+      let funcLine;
+      funcCode.forEach((text, index) => {
+          if(text?.toLowerCase()?.includes((func + "[" + params + "]").toLowerCase())) funcLine = index;
         })
       let splitted = params.split(";")
       let replacer = await require("../funcs/replacer.js")({
