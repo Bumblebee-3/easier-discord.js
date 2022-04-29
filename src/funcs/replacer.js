@@ -3,10 +3,10 @@ module.exports = async (data, name, db, message, client, error, real) => {
 
 function err (d, message) {
 if(d.msg?.channel === undefined) {
-console.error(`\`${d.data.name} error: ${message}\``)
+console.error(`\`${d.data.name} error: ${message}\` (line:${d.data.funcLine})`)
   } else {
 d.data.datas.isError = true
-d.msg.channel.send(`\`${d.data.name} error: ${message}\``)
+d.msg.channel.send(`\`${d.data.name} error: ${message}\` (line:${d.data.funcLine})`)
   }
 }
 const util = {};
