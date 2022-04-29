@@ -1,6 +1,6 @@
 {
   "name": "easier-discord.js",
-  "version": "0.0.5-dev",
+  "version": "0.0.7-dev",
   "description": "making discord bot for easier",
   "main": "index.js",
   "scripts": {
@@ -8,6 +8,8 @@
   },
   "keywords": [
     "discord",
+    "discord bot",
+    "discord bot maker",
     "bot",
     "chat",
     "api",
