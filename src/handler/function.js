@@ -65,7 +65,7 @@ module.exports = async (
         })
       let splitted = params.split(";")
       let replacer = await require("../funcs/replacer.js")({
-        name: func, inside: params, splits: splitted.map(z => z == "" ? undefined: z), all: func + "[" + params + "]", datas: datas
+        name: func, inside: params, splits: splitted.map(z => z == "" ? undefined: z), all: func + "[" + params + "]", datas: datas, funcLine: funcLine
       }, name, db, msg, client, datas.isError, real)
       code = code.replaceLast(func + "[" + params + "]", replacer)
       if (datas.isError) break;
