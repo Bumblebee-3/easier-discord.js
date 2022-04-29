@@ -60,7 +60,7 @@ module.exports = async (
       }
       params = params.substring(1, param + 1)
       let funcLine = code.split("\n");
-      funcLine = funcLine.forEach((text, index) => {
+      funcLine.forEach((text, index) => {
           if(text?.toLowerCase()?.includes(func + "[" + params + "]")) funcLine = index;
         })
       let splitted = params.split(";")
