@@ -81,6 +81,10 @@ module.exports = async (
   }*/
     let data = {}
     let all = {
+      util: {
+          embedParser: require("./utils/embedParser.js"),
+          checkCondition: require("./utils/checkCondition.js")
+        }
       db: db,
       data: data,
       msg: messagee,
