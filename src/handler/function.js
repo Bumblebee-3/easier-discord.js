@@ -84,7 +84,7 @@ module.exports = async (
       util: {
           embedParser: require("./utils/embedParser.js"),
           checkCondition: require("./utils/checkCondition.js")
-        }
+        },
       db: db,
       data: data,
       msg: messagee,
