@@ -10,15 +10,11 @@ const debug = require("debug")("ez:main")
 debug("Loaded")
 class Bot {
     constructor (opt) {
-        if(parseInt(process.version.replace("v","")) < 16) {
-           console.warn("\x1b[31mWarning!\x1b[0m\n\x1b[33measier-discord.js require node js version 16+ to be work, your current node js version: ", process.version, "please update your node js version and try again")
-           process.exit()
-        }
         this.opt = opt
         this.client = {}
         this.prefix = opt.prefix
         this.db = new Db({
-            path: opt.database === undefined ? undefined : opt.database.path
+            path: opt?.database?.path
         })
         this.cmd = require("./handler/commandType.js")
         this.functions = new newMap()
