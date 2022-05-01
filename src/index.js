@@ -18,7 +18,7 @@ class Bot {
         this.client = {}
         this.prefix = opt.prefix
         this.db = new Db({
-            path: opt?.database?.path
+            path: opt.database === undefined ? undefined : opt.database.path
         })
         this.cmd = require("./handler/commandType.js")
         this.functions = new newMap()
