@@ -62,7 +62,8 @@ module.exports = async (
          let funcCode = code.split("\n");
          let funcLine;
          funcCode.forEach((text, index) => {
-            if (text?.toLowerCase()?.includes((func + "[" + params + "]").toLowerCase())) funcLine = index;
+            const a = (func + "[" + params + "]").toLowerCase().split('\n')
+            if (text?.toLowerCase()?.includes(a[0])) funcLine = index;
          })
          let splitted = params.split(";")
          let replacer = await require("../funcs/replacer.js")({
