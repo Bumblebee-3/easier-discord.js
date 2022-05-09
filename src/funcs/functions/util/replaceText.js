@@ -11,14 +11,14 @@ module.exports = {
     }
     else if(!isNaN(num) && num >= 0) {
       let loop = text;
-      for(let i = 0; i < num; i++) {
+      for(let i = 0; i < num && loop.includes(replacer); i++) {
         loop = loop.replace(replacer, to)
       }
       replacedText = loop
     }
     else if(!isNaN(num) && num < 0) {
       let loop = text;
-      for(let i = 0; i > num; i--) {
+      for(let i = 0; i > num && loop.includes(replacer); i--) {
         loop = loop.replaceLast(replacer, to)
       }
       replacedText = loop
