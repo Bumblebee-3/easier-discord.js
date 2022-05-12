@@ -44,21 +44,8 @@ module.exports = async (
 
          let params = code.split(new RegExp (regEscape(func), "gi"))
          params = params[params.length - 1]
-         let param = params;
-         let a = 0;
-         if (!params.startsWith("[")) continue;
-         for (let i = 0;;i++) {
-            if (param.charAt(i) == "[") {
-               a++
-            } else if (param.charAt(i) == "]") {
-               a--
-            };
-            if (a <= 0 || i > param.length) {
-               param = a >= 0 ? i - 1: a == -1 ? i - 2: a == -2 ? i - 3: a == -3 ? i - 4: i - 5
-               break;
-            }
-         }
-         params = params.substring(1, param + 1)
+         const paramLength = params.split('[').length - 1;
+         params = params.split(']').slice(0, paramLength).join(']').replace('[', '');
          let funcCode = code.split("\n");
          let funcLine;
          funcCode.forEach((text, index) => {
