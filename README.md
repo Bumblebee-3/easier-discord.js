@@ -5,7 +5,7 @@
 > dont use!!! 
 >  if you do problems will heppen 
 # Credits 
-> Fight Farewell Fearless#9295 && Blurr#1447 //Owner + dev 
+> Fight Farewell Fearless#9295 && Bumblebee //Owner + dev 
 
 > NeonGamerBot_QK#1001 //lead dev
 
