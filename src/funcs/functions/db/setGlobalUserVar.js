@@ -1,7 +1,7 @@
 module.exports = {
 name: "$setGlobalUserVar",
 usage: "[name;value;id(optional)]",
-description: "set gloabal (mean in all server) user var with provided name and id",
+description: "Set a global (means in all server) users var with provided name(variable's) and id(user's) to the given value.",
 code: async (d) => {
   const [name, value,id = d.author?.id] = d.data.splits;
   if(!d.this.variable.has(name)) return d.sendError(d, `Variable "${name}" not found`);
