@@ -1,7 +1,7 @@
 module.exports = {
 name: "$getVar",
 usage: "[name]",
-description: "get var with provided name",
+description: "Gets a variable with the provided name.",
 code: async (d) => {
 const [name] = d.data.splits;
 if(!d.this.variable.has(name)) return d.sendError(d, `Variable "${name}" not found`);
