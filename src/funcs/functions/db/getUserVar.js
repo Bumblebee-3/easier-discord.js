@@ -1,7 +1,7 @@
 module.exports = {
 name: "$getUserVar",
 usage: "[name;id(optional);guildId(optional)]",
-description: "get user var with provided name and id",
+description: "Gets user's variable with provided name(variable's) and id(user's)",
 code: async (d) => {
   const [name,id = d.author?.id, guildid = d.guild?.id] = d.data.splits;
   if(!d.this.variable.has(name)) return d.sendError(d, `Variable "${name}" not found`);
