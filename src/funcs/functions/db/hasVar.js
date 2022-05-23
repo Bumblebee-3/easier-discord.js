@@ -1,10 +1,10 @@
 module.exports = {
 name: "$hasVar",
 usage: "[varName]",
-description: "check if provided var name exist",
+description: "Checks if provided variable name exists.",
 code: async d => {
    const [name] = d.data.splits;
-   if(!name) return d.sendError(d, "Provide the variable name");
+   if(!name) return d.sendError(d, " Please provide the variable name");
    return d.this.variable.has(name).toString()
   }
 }
