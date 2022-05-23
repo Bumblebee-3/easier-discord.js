@@ -1,7 +1,7 @@
 module.exports = {
 name: "$setChannelVar",
-usage: "[name;id(optional)]",
-description: "set var in channel with provided name and id",
+usage: "[name;value;id(optional)]",
+description: "Sets a channel's variable with the provided name(variable's) and id(channel's) to the provided value.",
 code: async (d) => {
   const [name,value,id = d.channel?.id] = d.data.splits;
  if(!d.this.variable.has(name)) return d.sendError(d, `Variable "${name}" not found`);
