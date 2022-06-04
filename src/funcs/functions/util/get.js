@@ -4,6 +4,6 @@ usage: "[name]",
 description: "return the value from $let",
 code: async (d) => {
    const [name] = d.data.splits;
-   return d.data.datas?.vars?.[name?.addB()]?.toString()?.delB();
+   return d.data.datas?.vars?.[name?.unescape()]?.toString()?.escape();
   }
 }

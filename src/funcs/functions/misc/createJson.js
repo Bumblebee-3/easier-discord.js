@@ -3,7 +3,7 @@ module.exports = {
   usage: "[json object]",
   description: "parse json object and then save it into data, and u can get it's property with $getJsonProperty",
   code: async (d) => {
-    let ins = d.data.inside?.addB()
+    let ins = d.data.inside?.unescape()
     try {
       ins = JSON.parse(ins);
     }

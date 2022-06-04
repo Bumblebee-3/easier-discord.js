@@ -15,7 +15,7 @@ String.prototype.replaceLast = function (find, replace) {
     
    
 
- String.prototype.delB = function () {
+ String.prototype.escape = function () {
 return this.replace(/\[/g, "#RIGHT#")
 .replace(/]/g, "#LEFT#")
 .replace(/;/g, "#SEMI#")
@@ -36,7 +36,7 @@ return this.replace(/\[/g, "#RIGHT#")
  
 
 
-String.prototype.addB = function () {
+String.prototype.unescape = function () {
 return this.replace(/#RIGHT#/g, "[")
 .replace(/#LEFT#/g, "]")
 .replace(/#SEMI#/g, ";")

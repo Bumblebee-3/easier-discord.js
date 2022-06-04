@@ -5,7 +5,7 @@ description: "set the provided name to provided value and get it by $get (same a
 code: async (d) => {
 const [name, value] = d.data.splits;
 if(!d.data.datas.vars) d.data.datas.vars = {};
-d.data.datas.vars[name.addB()] = value.addB();
+d.data.datas.vars[name.unescape()] = value.unescape();
 return ""
 }
 }

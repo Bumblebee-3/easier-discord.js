@@ -19,7 +19,7 @@ module.exports = {
     if (!user) return d.sendError(d, "Invalid provided user id");
     if (isNaN(Number(days)) || Number(days) < 0 || Number(days) > 7) return d.sendError(d, "Invalid days");
     guild.bans.create(user.id, {
-      days, reason: reason?.addB()}).catch(e => {
+      days, reason: reason?.unescape()}).catch(e => {
       d.sendError(d, "Failed to ban user with reason: " + e)
     })
     return ""

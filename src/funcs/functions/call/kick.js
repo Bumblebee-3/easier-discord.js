@@ -16,7 +16,7 @@ module.exports = {
       force: true
     });
     if (!user) return d.sendError(d, "Invalid provided user id");
-    user.kick(reason?.addB()).catch(e => {
+    user.kick(reason?.unescape()).catch(e => {
       d.sendError(d, "Failed to kick user with reason: " + e)
     })
     return ""

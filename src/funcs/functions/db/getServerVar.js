@@ -7,7 +7,7 @@ code: async (d) => {
 if(!d.this.variable.has(name)) return d.sendError(d, `Variable "${name}" not found`);
  let value = await d.db.get(name+"_"+id)
  value = value.value;
-value = value === undefined ? d.this.variable.get(name).delB() : value.delB();
+value = value === undefined ? d.this.variable.get(name).escape() : value.escape();
 return value;
 }
 

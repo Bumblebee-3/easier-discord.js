@@ -5,7 +5,7 @@ description: "count the provided number\nExample: \n```js\n$math[1+(3*3)]\n```",
 code: async (d) => {
 let result;
 try {
-result = eval(d.data.inside.addB())
+result = eval(d.data.inside.unescape())
   }
 catch (e) {
  return d.sendError(d, "invalid number or mathematic symbols")
