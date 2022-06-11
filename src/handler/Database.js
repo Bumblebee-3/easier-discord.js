@@ -3,11 +3,32 @@ const sepEach = "●";
 const fs = require("fs");
 const fsp = require("fs/promises");
 const path = require("path");
+let shouldWait = false;
 
-async function set(pathh, table, value) {
+async function setToFile(pathh, table, value) {
 
   await fsp.writeFile(path.join(process.cwd(), pathh, table, "meat.db"), value)
 
+}
+
+async function set(pathh, table, value) {
+  let waitedValue;
+  const timeoutFunc = () => {
+    if (waitedValue == null) {
+      shouldWait = false;
+    } else {
+      await setToFile(pathh, table, awaitedValue)
+      waitedValue = null;
+      setTimeout(timeoutFunc, 1000)
+    }
+  };
+  if (shouldWait) {
+    waitedValue = value;
+    return
+  }
+  shouldWait = true;
+  await setToFile(pathh, table, value)
+  setTimeout(timeoutFunc, 1000);
 }
 
 async function get(pathh, table) {
@@ -32,7 +53,7 @@ class Db {
     const split = all.split(sep);
 
     let find = split.find(z => z.startsWith(name + ":"))
-    const val = find === undefined ? all + sep + name + ":" + value: all.replace(find, name + ":" + value);
+    const val = find === undefined ? all + sep + name + ":" + value : all.replace(find, name + ":" + value);
     this.text = val
 
     await set(this.path, this.table, val)
@@ -68,7 +89,7 @@ class Db {
     return array
   }
 
-  async delete (name) {
+  async delete(name) {
     const all = this.text;
     name = Array.from(name).join(sepEach);
     const split = all.split(sep);
@@ -77,7 +98,7 @@ class Db {
     }).join(sep)
   }
 
-  async has (name) {
+  async has(name) {
     const db = await this.get(name);
     return db?.value;
   }

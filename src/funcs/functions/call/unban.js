@@ -5,7 +5,7 @@ module.exports = {
   code: async (d) => {
     const [userid,
       guildid = d.guild?.id] = d.data.splits;
-    let guild = guildid === d.guild?.id ? d.guild: await d.client.guilds.cache.get(guildid);
+    let guild = guildid === d.guild?.id ? d.guild : await d.client.guilds.cache.get(guildid);
     if (!guild) guild = await d.client.guilds.fetch(guildid, {
       force: true
     });

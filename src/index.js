@@ -90,6 +90,12 @@ class Bot {
                 await require("./handler/command/memberLeave.js")(member, this)
             })
     }
+    onReactionAdd() {
+        this.client.on("messageReactionAdd",
+            async (msg, emoji) => {
+                await require("./handler/command/reactionAdd.js")(msg, emoji, this)
+            })
+    }
 
 
     //commands
@@ -160,6 +166,11 @@ class Bot {
 
     memberLeaveCommand(opt) {
         this.cmd.memberLeave.set(this.cmd.memberLeave.size,
+            opt)
+    }
+
+    reactionAddCommand(opt) {
+        this.cmd.reactionAdd.set(this.cmd.reactionAdd.size,
             opt)
     }
 
