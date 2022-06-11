@@ -38,6 +38,8 @@ module.exports = async (
          isError: false,
          suppressErrors: false
       };
+      datas.isError === undefined ? datas.isError = false : datas.isError = datas.isError;
+      datas.suppressErrors === undefined ? datas.suppressErrors = false : datas.suppressErrors = datas.suppressErrors;
       let functions = search(split).reverse()
       for (const func of functions) {
          const regEscape = v => v.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
