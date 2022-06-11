@@ -5,129 +5,139 @@ const fsp = require("fs/promises");
 const path = require("path");
 let shouldWait = false;
 
-async function setToFile(pathh, table, value) {
+let waitedValue;
 
-  await fsp.writeFile(path.join(process.cwd(), pathh, table, "meat.db"), value)
+async function setToFile(pathh, table, all) {
+    let keys = Array.from(all.keys());
+    let values = Array.from(all.values());
+    let object = {};
+    keys.forEach((x) => (object[x] = values[keys.indexOf(x)]));
+    let value = '';
+    Object.keys(object).forEach((key) => {
+        value += Array.from(key).join(sepEach) + ":" + Array.from(object[key]).join(sepEach) + sep;
+        //console.log(key)
+    });
+    //console.log(all)
+    await fsp.writeFile(path.join(process.cwd(), pathh, table, "meat.db"), value)
 
 }
 
 async function set(pathh, table, value) {
-  let waitedValue;
-  const timeoutFunc = () => {
-    if (waitedValue == null) {
-      shouldWait = false;
-    } else {
-      await setToFile(pathh, table, awaitedValue)
-      waitedValue = null;
-      setTimeout(timeoutFunc, 1000)
+    //console.log(value)
+
+    const timeoutFunc = async () => {
+        if (waitedValue == null) {
+            shouldWait = false;
+        } else {
+            // console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+            await setToFile(pathh, table, waitedValue)
+            waitedValue = null;
+            setTimeout(timeoutFunc, 1000)
+        }
+    };
+    if (shouldWait) {
+        waitedValue = value;
+        return
     }
-  };
-  if (shouldWait) {
-    waitedValue = value;
-    return
-  }
-  shouldWait = true;
-  await setToFile(pathh, table, value)
-  setTimeout(timeoutFunc, 1000);
+    shouldWait = true;
+    await setToFile(pathh, table, value)
+    setTimeout(timeoutFunc, 1000);
 }
 
 async function get(pathh, table) {
-  const all = await fsp.readFile(path.join(process.cwd(), pathh, table, "meat.db"), "utf8")
-  return all;
+    const all = await fsp.readFile(path.join(process.cwd(), pathh, table, "meat.db"), "utf8")
+    return all;
 }
 
 class Db {
 
-  constructor(opt) {
-    this.path = opt?.path || "./database"
-    this.table = opt?.table || "main"
-    this.start()
-  }
-
-  async set(namae, valuae) {
-    valuae = valuae.toString();
-    namae = namae.toString();
-    const all = this.text;
-    const name = Array.from(namae).join(sepEach);
-    const value = Array.from(valuae).join(sepEach);
-    const split = all.split(sep);
-
-    let find = split.find(z => z.startsWith(name + ":"))
-    const val = find === undefined ? all + sep + name + ":" + value : all.replace(find, name + ":" + value);
-    this.text = val
-
-    await set(this.path, this.table, val)
-
-  }
-
-  async get(namae) {
-    const all = this.text;
-    const name = Array.from(namae).join(sepEach);
-    const split = all.split(sep);
-    let find = split.find(z => z.startsWith(name + ":"))
-    const val = find?.split(":")?.slice(1)?.join(":")?.replace(new RegExp(sepEach, "g"), "");
-    return {
-      key: namae,
-      value: val
+    constructor(opt) {
+        this.path = opt?.path || "./database"
+        this.table = opt?.table || "main"
+        this.start()
     }
-  }
 
-  async all() {
-    const all = this.text;
-    const s = all.split(sep).filter(z => {
-      return z !== ""
-    });
+    async set(namae, valuae) {
+        valuae = valuae.toString();
+        namae = namae.toString();
+        const all = this.text;
+        all.set(namae, valuae);
 
-    let array = []
-    for (let i = 0; i < s.length; i++) {
-      const db = s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(1).join(":");
-      array.push({
-        key: s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(0, 1).join(":"), value: db
-      })
+        await set(this.path, this.table, all)
 
     }
-    return array
-  }
 
-  async delete(name) {
-    const all = this.text;
-    name = Array.from(name).join(sepEach);
-    const split = all.split(sep);
-    this.text = split.filter(z => {
-      return z.split(":")[0] !== name
-    }).join(sep)
-  }
+    async get(namae) {
+        const val = this.text.get(Array.from(namae).join(sepEach));
+        return {
+            key: namae,
+            value: val
+        }
+    }
 
-  async has(name) {
-    const db = await this.get(name);
-    return db?.value;
-  }
+    async all() {
+        const all = this.text;
+        const s = all.split(sep).filter(z => {
+            return z !== ""
+        });
 
-  async ping() {
-    const now = Date.now();
-    await this.all()
-    return Date.now() - now;
-  }
+        let array = []
+        for (let i = 0; i < s.length; i++) {
+            const db = s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(1).join(":");
+            array.push({
+                key: s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(0, 1).join(":"), value: db
+            })
 
-  start() {
-    if (fs.existsSync(path.join(process.cwd(), this.path)) == false) {
-      fs.mkdirSync(path.join(process.cwd(), this.path));
-      fs.mkdirSync(path.join(process.cwd(), this.path, this.table));
-      fs.writeFileSync(path.join(process.cwd(), this.path, this.table, "meat.db"), "")
+        }
+        return array
+    }
+
+    async delete(name) {
+        const all = this.text;
+        name = Array.from(name).join(sepEach);
+        const split = all.split(sep);
+        this.text = split.filter(z => {
+            return z.split(":")[0] !== name
+        }).join(sep)
+    }
+
+    async has(name) {
+        const db = await this.get(name);
+        return db?.value;
+    }
+
+    async ping() {
+        const now = Date.now();
+        await this.all()
+        return Date.now() - now;
+    }
+
+    start() {
+        if (fs.existsSync(path.join(process.cwd(), this.path)) == false) {
+            fs.mkdirSync(path.join(process.cwd(), this.path));
+            fs.mkdirSync(path.join(process.cwd(), this.path, this.table));
+            fs.writeFileSync(path.join(process.cwd(), this.path, this.table, "meat.db"), "")
 
 
-    } else if (fs.existsSync(path.join(process.cwd(), this.path, this.table)) == false) {
+        } else if (fs.existsSync(path.join(process.cwd(), this.path, this.table)) == false) {
 
-      fs.mkdirSync(path.join(process.cwd(), this.path, this.table));
-      fs.writeFileSync(path.join(process.cwd(), this.path, this.table, "meat.db"), "")
+            fs.mkdirSync(path.join(process.cwd(), this.path, this.table));
+            fs.writeFileSync(path.join(process.cwd(), this.path, this.table, "meat.db"), "")
 
-    } else if (fs.existsSync(path.join(process.cwd(), this.path, this.table, "meat.db")) == false) {
-      fs.writeFileSync(path.join(process.cwd(), this.path, this.table, "meat.db"), "")
+        } else if (fs.existsSync(path.join(process.cwd(), this.path, this.table, "meat.db")) == false) {
+            fs.writeFileSync(path.join(process.cwd(), this.path, this.table, "meat.db"), "")
 
-    };
-    this.text = fs.readFileSync(path.join(process.cwd(), this.path, this.table, "meat.db"), "utf8")
-    console.log("Database ready!")
-  }
+        };
+        this.text = new Map()
+        const texts = fs.readFileSync(path.join(process.cwd(), this.path, this.table, "meat.db"), "utf8")
+
+        const s = texts.split(sep).filter(z => {
+            return z !== ""
+        }).forEach(z => {
+            this.text.set(z.split(":")[0].replaceAll(sepEach, ''), z.split(":").slice(1).join(":").replaceAll(sepEach, ''))
+        });
+
+        console.log("Database ready!")
+    }
 }
-
 module.exports = Db;
