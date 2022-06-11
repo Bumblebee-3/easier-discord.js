@@ -77,15 +77,12 @@ class Db {
 
     async all() {
         const all = this.text;
-        const s = all.split(sep).filter(z => {
-            return z !== ""
-        });
 
         let array = []
-        for (let i = 0; i < s.length; i++) {
-            const db = s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(1).join(":");
+        for (const [key, value] of all) {
             array.push({
-                key: s[i].replace(new RegExp(sepEach, "g"), "").split(":").slice(0, 1).join(":"), value: db
+              key,
+              value    
             })
 
         }
@@ -94,16 +91,13 @@ class Db {
 
     async delete(name) {
         const all = this.text;
-        name = Array.from(name).join(sepEach);
-        const split = all.split(sep);
-        this.text = split.filter(z => {
-            return z.split(":")[0] !== name
-        }).join(sep)
+        all.delete(name);
+        await set(this.path, this.table, all)
     }
 
     async has(name) {
-        const db = await this.get(name);
-        return db?.value;
+        const all = this.text;
+        return all.has(name);
     }
 
     async ping() {
