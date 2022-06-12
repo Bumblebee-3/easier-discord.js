@@ -68,7 +68,7 @@ class Db {
     }
 
     async get(namae) {
-        const val = this.text.get(Array.from(namae).join(sepEach));
+        const val = this.text.get(namae);
         return {
             key: namae,
             value: val
