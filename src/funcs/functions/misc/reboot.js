@@ -1,6 +1,6 @@
 module.exports = {
   name: "$reboot",
-  usage: "None",
+  usage: "[]",
   description: "Reboots the NodeJS process",
   code: async (d) => {
     try {
