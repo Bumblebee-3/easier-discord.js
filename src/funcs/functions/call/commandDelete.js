@@ -1,6 +1,6 @@
 module.exports = {
   name: "$commandDelete",
-  usage: "None",
+  usage: "[]",
   description: "Deletes the message that executed the code.",
   code: async (d) => {
     try {
