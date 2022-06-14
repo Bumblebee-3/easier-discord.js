@@ -1,6 +1,6 @@
 module.exports = {
   name: "$destroy",
-  usage: "None",
+  usage: "[]",
   description: "Destroyes the client process.",
   code: async (d) => {
     let client = d.client;
