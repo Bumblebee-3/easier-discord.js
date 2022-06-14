@@ -1,7 +1,7 @@
 module.exports = {
   name: "$ban",
   usage: "[userID;reason (optional);days(optional, default to 1 or put 0 to permanent);guildId(optional)]",
-  description: "kick member with provided id from provided guildId",
+  description: "Ban a member with provided id (user ID) from provided id (Guild ID) for an optional number of days, or permanant.",
   code: async (d) => {
     const [userid,
       reason,
