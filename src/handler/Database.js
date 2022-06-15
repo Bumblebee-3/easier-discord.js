@@ -4,7 +4,7 @@ const fs = require("fs");
 const fsp = require("fs/promises");
 const { toNamespacedPath } = require("path");
 const path = require("path");
-const Structure = require("./strucuture.js");
+const Structure = require("./DatabaseStructure.js");
 
 class Db extends Structure {
 
