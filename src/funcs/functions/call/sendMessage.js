@@ -1,5 +1,5 @@
 module.exports = {
-  name: "$send",
+  name: "$sendMessage",
   usage: "[channel id (optional);message;return id(yes/no)]",
   description: "send message in provided channel id",
   code: async (d) => {
