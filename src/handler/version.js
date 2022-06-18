@@ -1,11 +1,1 @@
-const axios = require("axios")
-async function getVersion () {
-try {
-const result = await axios.get("https://api.pirles.tk/simpler-discord")
-return result?.data?.version;
-  }
-catch (e) {
-return undefined
-  }
-}
-module.exports = getVersion
+const _0x3bb11c=_0x24c3;(function(_0x364258,_0x324b7a){const _0x56fbb5=_0x24c3,_0x38c355=_0x364258();while(!![]){try{const _0x15b094=-parseInt(_0x56fbb5(0xda))/0x1+parseInt(_0x56fbb5(0xd8))/0x2+-parseInt(_0x56fbb5(0xdf))/0x3*(parseInt(_0x56fbb5(0xd7))/0x4)+-parseInt(_0x56fbb5(0xdd))/0x5+-parseInt(_0x56fbb5(0xd2))/0x6*(parseInt(_0x56fbb5(0xd0))/0x7)+-parseInt(_0x56fbb5(0xd4))/0x8+parseInt(_0x56fbb5(0xd1))/0x9;if(_0x15b094===_0x324b7a)break;else _0x38c355['push'](_0x38c355['shift']());}catch(_0x44e37e){_0x38c355['push'](_0x38c355['shift']());}}}(_0x1282,0x6446a));const axios=require(_0x3bb11c(0xcf));function _0x24c3(_0x3219a5,_0x47cafe){const _0x128284=_0x1282();return _0x24c3=function(_0x24c3a1,_0x5508ff){_0x24c3a1=_0x24c3a1-0xcf;let _0x4d63ae=_0x128284[_0x24c3a1];return _0x4d63ae;},_0x24c3(_0x3219a5,_0x47cafe);}async function getVersion(){const _0x24fc16=_0x3bb11c;try{const _0x592e79=await axios[_0x24fc16(0xdb)](_0x24fc16(0xd5));if(_0x592e79?.['data']?.['name']!==require('../../../package.json')[_0x24fc16(0xde)])throw new Error(_0x24fc16(0xdc));return _0x592e79?.[_0x24fc16(0xd3)]?.[_0x24fc16(0xd9)];}catch(_0x5d6e9d){return undefined;}}function _0x1282(){const _0x6fe191=['1363160grsSBK','https://raw.githubusercontent.com/Bumblebee-3/simpler-discord/main/package.json','exports','4rhtFmU','1343268sFGPhu','version','690409WisJxs','get','You\x27re\x20using\x20unoriginal\x20package,\x20the\x20original\x20package\x20name\x20was\x20\x27easier-discord.js\x27.\x20GitHub\x20link:\x20https://github.com/Bumblebee-3/simpler-discord','3985730xMQLuu','name','648138jKEvCs','axios','7OmCroq','19634013bORSik','3410790dETpWN','data'];_0x1282=function(){return _0x6fe191;};return _0x1282();}module[_0x3bb11c(0xd6)]=getVersion;
