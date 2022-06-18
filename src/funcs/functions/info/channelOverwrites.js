@@ -10,6 +10,6 @@ module.exports = {
     if (!channel) return d.sendError(d, "Invalid channel id provided");
     let overwrites = [...channel.permissionOverwrites.cache.values()];
     result = overwrites.map(x => response.replaceAll("{mention}", x.type === "role" ? `<@&${x.id}>` : `<@${x.id}>`).replaceAll("{type}", x.type).replaceAll("{allow}", x.allow.toArray().join(" , ")).replaceAll("{deny}", x.deny.toArray().join(" , "))).join(sep);
-    return result:
+    return result;
     }
   }
