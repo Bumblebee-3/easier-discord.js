@@ -23,7 +23,7 @@
   "dependencies": {
     "axios":"^0.26.1",
     "debug": "^4.3.4",
-    "discord.js": "^13.6.0"
+    "discord.js": "^13.6.0",
     "os": "0.1.2"
   }
 }
