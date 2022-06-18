@@ -3,6 +3,7 @@ module.exports = {
   usage: "[channel id (optional);message;return id(yes/no)]",
   description: "send message in provided channel id",
   code: async (d) => {
+    console.log('$send is deprecated, please move to $sendMessage, Command name:', d.cmd)
     let [id = d.channel?.id, msg, returns] = d.data.splits;
     const client = d.client;
     let channel = await client.channels.cache.get(id);
