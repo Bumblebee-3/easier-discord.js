@@ -1,8 +1,5 @@
 # Still in development 
-> Do not use or fork 
-> still developing 
-> unstable!!! 
-> dont use!!! 
+> WIP. IS UNSTABLE
 >  if you do problems will heppen 
 # Credits 
 > Fight Farewell Fearless#9295 && Bumblebee //Owner + dev 
