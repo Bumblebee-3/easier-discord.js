@@ -7,7 +7,7 @@
 # Credits 
 > Fight Farewell Fearless#9295 && Bumblebee //Owner + dev 
 
-> NeonGamerBot_QK#1001 //lead dev
+> NeonGamerBot_QK#1001 && Idoctus#0023 //lead dev
 
 > duckey | Nova dev#3049 //package idea && Docs manager
 
