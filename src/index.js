@@ -25,7 +25,7 @@ class Bot {
             const up = opt.autoUpdateVersion;
             if (z != version && z !== undefined && up === true) {
                 console.log("Updating version... (autoUpdateVersion)")
-                require("child_process").execSync("npm i https://github.com/Bumblebee-3/simpler-discord");
+                require("child_process").execSync("npm i https://github.com/Bumblebee-3/easier-discord.js");
                 console.log("Update complete, please restart your bot");
                 process.exit();
             }
