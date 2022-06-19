@@ -15,7 +15,7 @@ module.exports = async (
 
    let code = cod
    // let lower = typeof code === "string" ? code.toLowerCase() : ""
-   let split = typeof code === "string" ? code.split("$"): []
+   let split = typeof code === "string" ? code.split("$") : []
 
    let Fin = []
    function search(functions) {
@@ -43,11 +43,29 @@ module.exports = async (
       let functions = search(split).reverse()
       for (const func of functions) {
          const regEscape = v => v.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
-
-         let params = code.split(new RegExp (regEscape(func), "gi"))
+         let hasBracket = true;
+         let params = code.split(new RegExp(regEscape(func), "gi"))
          params = params[params.length - 1]
-         const paramLength = params.split('[').length - 1;
-         params = params.split(']').slice(0, paramLength).join(']').replace('[', '');
+         let param = params;
+         let a = 0;
+         if (!params.startsWith("[")) {
+            params = "";
+            hasBracket = false;
+         }
+         else {
+            for (let i = 0; ; i++) {
+               if (param.charAt(i) == "[") {
+                  a++
+               } else if (param.charAt(i) == "]") {
+                  a--
+               };
+               if (a <= 0 || i > param.length) {
+                  param = a >= 0 ? i - 1 : a == -1 ? i - 2 : a == -2 ? i - 3 : a == -3 ? i - 4 : i - 5
+                  break;
+               }
+            }
+            params = params.substring(1, param + 1)
+         };
          let funcCode = code.split("\n");
          let funcLine;
          funcCode.forEach((text, index) => {
@@ -58,8 +76,8 @@ module.exports = async (
          let replacer = await require("../funcs/replacer.js")({
             name: func,
             inside: params,
-            splits: splitted.map(z => z == "" ? undefined: z),
-            all: func + "[" + params + "]",
+            splits: splitted.map(z => z == "" ? undefined : z),
+            all: hasBracket ? func + "[" + params + "]" : func,
             datas: datas,
             funcLine: funcLine
          },
@@ -69,7 +87,7 @@ module.exports = async (
             client,
             datas.isError,
             real)
-         code = code.replaceLast(func + "[" + params + "]",
+         code = code.replaceLast(hasBracket ? func + "[" + params + "]" : func,
             replacer)
          if (datas.isError) break;
       }
