@@ -9,9 +9,7 @@ module.exports = async (data, name, db, message, client, error, real) => {
          d.msg.channel.send(`\`${d.data.name} error: ${message}\` **(line: ${isNaN(d.data.funcLine) ? undefined: d.data.funcLine + 1})**`)
       }
    }
-   const util = {};
-   util.embedParser = require ("../handler/utils/embedParser.js");
-   util.checkCondition = require("../handler/utils/checkCondition.js");
+   const util = require("../handler/utils/Util.js");
    let messagee = message?.msg || message
    let d = data.name
    let all = {
@@ -29,7 +27,7 @@ module.exports = async (data, name, db, message, client, error, real) => {
       error: error,
       this: real,
       sendError: err,
-      util: util
+      util
    }
    let arg = all.msg?.content?.replace(all.client?.prefix, "").replace(all.cmd, "");
    arg = arg?.trim();

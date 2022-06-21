@@ -10,7 +10,7 @@ module.exports = async (
 ) => {
 
    debug("functions#")
-   let readFunc = require("../funcs/parser.js")
+   let readFunc = real.funcParser;
 
 
    let code = cod
@@ -101,10 +101,7 @@ module.exports = async (
   }*/
       let data = {}
       let all = {
-         util: {
-            embedParser: require("./utils/embedParser.js"),
-            checkCondition: require("./utils/checkCondition.js")
-         },
+         util: require('./utils/Util.js'),
          db: db,
          data: data,
          msg: messagee,

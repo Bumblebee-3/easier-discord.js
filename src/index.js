@@ -17,6 +17,7 @@ class Bot {
             path: opt?.database?.path
         })
         this.cmd = require("./handler/commandType.js")
+        this.funcParser = require("./funcs/parser")
         this.functions = new newMap()
         this.variable = new newMap()
         this.start()
