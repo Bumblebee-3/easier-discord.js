@@ -113,7 +113,7 @@ class Util {
     }
 
     static async fetchUser(d, userid) {
-        const user = await d.client.users.fetch(userid, { force: true })
+        const user = await d.client.users.fetch(userid, { force: true }).catch(x => { })
         return user;
     }
     static async getUser(d, userid) {
@@ -123,7 +123,7 @@ class Util {
     }
 
     static async fetchChannel(d, id) {
-        const channel = await d.client.channels.fetch(id, { force: true })
+        const channel = await d.client.channels.fetch(id, { force: true }).catch(x => { })
         return channel
     }
     static async getChannel(d, id) {
@@ -133,7 +133,7 @@ class Util {
     }
 
     static async fetchGuildChannel(guild, channelid) {
-        const channel = await guild.channels.fetch(channelid, { force: true })
+        const channel = await guild.channels.fetch(channelid, { force: true }).catch(x => { })
         return channel
     }
     static async getGuildChannel(guild, channelid) {
@@ -143,7 +143,7 @@ class Util {
     }
 
     static async fetchGuild(d, id) {
-        const guild = await d.client.guilds.fetch(id, { force: true })
+        const guild = await d.client.guilds.fetch(id, { force: true }).catch(x => { })
         return guild
     }
     static async getGuild(d, id) {
