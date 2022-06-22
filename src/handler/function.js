@@ -87,6 +87,7 @@ module.exports = async (
             client,
             datas.isError,
             real)
+            if(replacer === undefined) replacer = '';
          code = code.replaceLast(hasBracket ? func + "[" + params + "]" : func,
             replacer)
          if (datas.isError) break;
