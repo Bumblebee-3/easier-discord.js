@@ -1,12 +1,12 @@
 module.exports = async (data, name, db, message, client, error, real) => {
    /* const parse = fs.readdirSync(__dirname + "/functions")*/
 
-   function err (d, message) {
+   function err(d, message) {
       if (d.msg?.channel === undefined) {
-         console.error(`\`${d.data.name} error: ${message}\` **(line: ${isNaN(d.data.funcLine) ? undefined: d.data.funcLine + 1})**`)
+         console.error(`\`${d.data.name} error: ${message}\` **(line: ${isNaN(d.data.funcLine) ? undefined : d.data.funcLine + 1})**`)
       } else {
          d.data.datas.isError = true
-         d.msg.channel.send(`\`${d.data.name} error: ${message}\` **(line: ${isNaN(d.data.funcLine) ? undefined: d.data.funcLine + 1})**`)
+         d.msg.channel.send(`\`${d.data.name} error: ${message}\` **(line: ${isNaN(d.data.funcLine) ? undefined : d.data.funcLine + 1})**`)
       }
    }
    const util = require("../handler/utils/Util.js");
@@ -32,5 +32,5 @@ module.exports = async (data, name, db, message, client, error, real) => {
    let arg = all.msg?.content?.replace(all.client?.prefix, "").replace(all.cmd, "");
    arg = arg?.trim();
    all.arg = arg
-   return await real.functions.get (d.toLowerCase())(all)
+   return await real.functions.get(d.toLowerCase())(all)
 }

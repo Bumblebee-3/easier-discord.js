@@ -13,6 +13,6 @@ module.exports = async (msg, emoji, bot) => {
         else {
             data.channel = bot.client.channels.cache.get(cmd?.channel)
         }
-        await require("../function.js")(cmd?.code, "reactionAdd", bot.db, data, bot.client, bot, {emoji})
+        await require("../function.js")(cmd?.code, "reactionAdd", bot.db, data, bot.client, bot, { emoji })
     }
 }
