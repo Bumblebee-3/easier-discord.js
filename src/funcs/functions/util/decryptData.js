@@ -11,7 +11,7 @@ module.exports = {
             const keys = crypto.scryptSync(key, 'salt', 24)
             const decipher = new crypto.createDecipheriv('aes-192-cbc', keys, Buffer.alloc(16))
 
-            dnc = decipher.update(text, 'hex', 'utf8') + cipher.final('utf8')
+            dnc = decipher.update(text, 'hex', 'utf8') + decipher.final('utf8')
 
             return dnc
 
