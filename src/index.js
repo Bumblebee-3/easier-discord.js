@@ -194,7 +194,7 @@ class Bot {
     async login(token) {
         debug('Bot#login')
         const current = await getVersion();
-        if (current != version && current !== undefined) console.log("your version is probably old\ncurrent version: " + current + "\nyour version: " + version);
+        if (current != version && current !== undefined) console.log("\x1b[33m⚠Update Notice⚠\x1b[0m\nNew version available: " + current + "\nYour version: " + version);
         await this.client.login(token)
         this.client.prefix = this.prefix;
         console.log("Initialized on "+this.client.user.tag +"\nMade with : \x1b[32mSimple Discord\x1b[0m\nv" + version + "\nJoin official support server: https://discord.gg/DW4CCH236j");
