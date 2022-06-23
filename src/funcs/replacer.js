@@ -2,6 +2,7 @@ module.exports = async (data, name, db, message, client, error, real) => {
    /* const parse = fs.readdirSync(__dirname + "/functions")*/
 
    function err(d, message) {
+      if(d.data.datas.suppressErrors === true) return;
       if (d.msg?.channel === undefined) {
          console.error(`\`${d.data.name} error: ${message}\` **(line: ${isNaN(d.data.funcLine) ? undefined : d.data.funcLine + 1})**`)
       } else {
