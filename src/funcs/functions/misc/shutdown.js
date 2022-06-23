@@ -5,5 +5,5 @@ module.exports = {
   code: async (d) => {
     d.client?.destroy()
     process?.exit()
-    }
   }
+}
