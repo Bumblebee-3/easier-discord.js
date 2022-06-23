@@ -1,4 +1,4 @@
-module.export = {
+module.exports = {
     name: "$round",
     description: "rounds the specified number to the nearest number",
     usage: "$round[number]",
