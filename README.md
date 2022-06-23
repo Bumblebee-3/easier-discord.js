@@ -11,7 +11,7 @@ npm i easier-discord.js
 ```
 or u can use this command to install the github version
 ```
-npm i github:Bumblebee/easier-discord.js
+npm i github:Bumblebee-3/easier-discord.js
 ```
 Note: _to run this make sure u have github installed_
 
