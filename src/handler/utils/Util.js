@@ -112,38 +112,38 @@ class Util {
         }
     }
 
-      static get channelTypes() {
-    return {
-      Dm: "DM",
-      Text: "GUILD_TEXT",
-      Voice: "GUILD_VOICE",
-      News: "GUILD_NEWS",
-      Store: "GUILD_STORE",
-      Unknown: "UNKNOWN",
-      GroupDm: "GROUP_DM",
-      Stage: "GUILD_STAGE_VOICE",
-      Category: "GUILD_CATEGORY",
-      NewsThread: "GUILD_NEWS_THREAD",
-      PublicThread: "GUILD_PUBLIC_THREAD",
-      PrivateThread: "GUILD_PRIVATE_THREAD",
-    };
-  }
-      static get threadTypes() {
-    return {
-      public: "GUILD_PUBLIC_THREAD",
-      private: "GUILD_PRIVATE_THREAD",
-    };
-  }
-    
-    static async fetchMember(guild, id) {
-    return guild.members.fetch(id, { force: true }).catch((err) => undefined);
-  }
-    static async getMember(guild, id) {
-    let member = guild.members.cache.get(id);
-    if (!member) member = this.fetchMember(guild, id);
-    return member;
+    static get channelTypes() {
+        return {
+            Dm: "DM",
+            Text: "GUILD_TEXT",
+            Voice: "GUILD_VOICE",
+            News: "GUILD_NEWS",
+            Store: "GUILD_STORE",
+            Unknown: "UNKNOWN",
+            GroupDm: "GROUP_DM",
+            Stage: "GUILD_STAGE_VOICE",
+            Category: "GUILD_CATEGORY",
+            NewsThread: "GUILD_NEWS_THREAD",
+            PublicThread: "GUILD_PUBLIC_THREAD",
+            PrivateThread: "GUILD_PRIVATE_THREAD",
+        };
     }
-    
+    static get threadTypes() {
+        return {
+            public: "GUILD_PUBLIC_THREAD",
+            private: "GUILD_PRIVATE_THREAD",
+        };
+    }
+
+    static async fetchMember(guild, id) {
+        return guild.members.fetch(id, { force: true }).catch((err) => undefined);
+    }
+    static async getMember(guild, id) {
+        let member = guild.members.cache.get(id);
+        if (!member) member = this.fetchMember(guild, id);
+        return member;
+    }
+
     static async fetchUser(d, userid) {
         const user = await d.client.users.fetch(userid, { force: true }).catch(x => { })
         return user;
@@ -153,15 +153,15 @@ class Util {
         if (!user) user = await this.fetchUser(d, userid)
         return user;
     }
-    
+
     static async fetchMessage(channel, id) {
-    return channel.messages.fetch(id, { force: true }).catch(e => { });
-  }
+        return channel.messages.fetch(id, { force: true }).catch(e => { });
+    }
     static async getMessage(channel, id) {
-     let message = await channel.messages.cache.get(id, { force: true });
-     if (!message) message = await this.fetchMessage(channel, id);
-     return message;
-  }
+        let message = await channel.messages.cache.get(id, { force: true });
+        if (!message) message = await this.fetchMessage(channel, id);
+        return message;
+    }
 
     static async fetchChannel(d, id) {
         const channel = await d.client.channels.fetch(id, { force: true }).catch(x => { })

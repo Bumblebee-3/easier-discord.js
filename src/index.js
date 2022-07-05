@@ -1,15 +1,15 @@
-const api = require ("./handler/api.js");
-const getVersion = require ("./handler/version.js");
+const api = require("./handler/api.js");
+const getVersion = require("./handler/version.js");
 const version = require("../package.json").version;
 const Discord = require("discord.js")
-const newMap = require("./cache/newMap.js")
+const newMap = require("./cache Handler/cache.js")
 const Db = require("meatdb")
 const fs = require("fs")
 const path = require("path")
 const debug = require("debug")("ez:main")
 debug("Loaded")
 class Bot {
-    constructor (opt) {
+    constructor(opt) {
         this.opt = opt
         this.client = {}
         this.prefix = opt.prefix
@@ -128,7 +128,7 @@ class Bot {
     }
 
     intervalCommand(opt) {
-        (async() => {
+        (async () => {
             const commandData = opt.channel?.includes("$") ? await require("./handler/function.js")(
                 opt.channel,
                 "channel",
@@ -136,7 +136,7 @@ class Bot {
                 {},
                 this.client,
                 this
-            ): opt.channel || {};
+            ) : opt.channel || {};
             setInterval(async () => {
                 await require("./handler/function.js")(
                     opt.code,
@@ -148,14 +148,16 @@ class Bot {
                 )
             }, opt.every)
             if (opt?.onStartup === true) {
-                await require("./handler/function.js")(
-                    opt.code,
-                    "intervalCommand",
-                    this.db,
-                    commandData,
-                    this.client,
-                    this
-                )
+                this.client.on('ready', async () => {
+                    await require("./handler/function.js")(
+                        opt.code,
+                        "intervalCommand",
+                        this.db,
+                        commandData,
+                        this.client,
+                        this
+                    )
+                })
             }
         })()
     }
@@ -178,7 +180,7 @@ class Bot {
     ready(opt) {
         this.client.on("ready",
             async () => {
-                await require ("./handler/function.js")(opt.code, undefined, this.db, {}, this.client, this)
+                await require("./handler/function.js")(opt.code, undefined, this.db, {}, this.client, this)
             })
     }
 
@@ -197,8 +199,15 @@ class Bot {
         if (current != version && current !== undefined) console.log("\x1b[33m⚠Update Notice⚠\x1b[0m\nNew version available: " + current + "\nYour version: " + version);
         await this.client.login(token)
         this.client.prefix = this.prefix;
-        console.log("Initialized on "+this.client.user.tag +"\nMade with : \x1b[32mSimple Discord\x1b[0m\nv" + version + "\nJoin official support server: https://discord.gg/DW4CCH236j");
+        console.log("Initialized on " + this.client.user.tag + "\nMade with : \x1b[32mSimple Discord\x1b[0m\nv" + version + "\nJoin official support server: https://discord.gg/DW4CCH236j");
         api(this)
+    }
+
+    //Custom Function
+
+    createCustomFunction(opt) {
+        if (!opt?.name || !opt?.name?.includes('$') || typeof opt?.code !== 'function') throw new Error('Invalid Name or Code');
+        this.functions.set(opt.name.toLowerCase(), opt.code)
     }
 }
 
@@ -209,15 +218,25 @@ class CommandHandler {
         this.bot = bot
     }
     load(folder) {
+        let consoleText = [];
         let dirFolder = path.join(process.cwd(), folder);
 
         let files = fs.readdirSync(dirFolder).filter(file => file.endsWith('js'))
         files.forEach(x => {
-            const theFile = require(`${dirFolder}/${x}`)
-            const theCmd = this.bot.cmd[theFile?.type || "default"]
-            if (theCmd !== undefined) theCmd.set(theFile.name, theFile)
-            else console.warn("command type is invalid " + dirFolder + "/" + x);
+            try {
+                const theFile = require(`${dirFolder}/${x}`)
+                const theCmd = this.bot.cmd[theFile?.type || "default"]
+                if (theCmd !== undefined) {
+                    theCmd.set(theFile.name, theFile)
+                    consoleText.push('Loaded ' + dirFolder + '/' + x)
+                }
+                else consoleText.push("Command type is invalid " + dirFolder + "/" + x);
+            }
+            catch (e) {
+                consoleText.push('Faled to load ' + dirFolder + '/' + x)
+            }
         });
+        console.log(consoleText.join('\n|-------------------------------|\n'))
     }
 }
 

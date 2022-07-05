@@ -1,4 +1,4 @@
-const newMap = require("../cache/newMap.js")
+const newMap = require("../cache Handler/cache.js")
 module.exports = {
     alwaysExecute: new newMap(),
     botJoin: new newMap(),

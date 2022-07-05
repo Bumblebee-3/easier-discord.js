@@ -3,7 +3,7 @@ module.exports = async (msg, bot) => {
   if (!data.author?.bot) {
     const cmds = bot.cmd.alwaysExecute.values()
     for (const cmd of cmds) {
-      await require("../function.js")(cmd?.code, "$always", bot.db, data, bot.client, bot)
+      require("../function.js")(cmd?.code, "$always", bot.db, data, bot.client, bot)
     }
   }
 }

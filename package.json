@@ -13,7 +13,8 @@
     "bot",
     "chat",
     "api",
-    "wrapper"
+    "wrapper",
+    "easy"
   ],
   "author": "fightfarewellfearless",
   "bugs": {

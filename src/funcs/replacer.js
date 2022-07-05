@@ -2,8 +2,25 @@ module.exports = async (data, name, db, message, client, error, real) => {
     /* const parse = fs.readdirSync(__dirname + "/functions")*/
 
     function err(d, message) {
-        if (d.data.datas.suppressErrors === true) return;
+        if (d.data.datas.suppressErrors !== false) {
+            if (d.data.datas.suppressErrors !== undefined) {
+                let output = d.data.datas.suppressErrors;
+                output = output.replaceAll('{fullError}', `\`${d.data.name} error: ${message}\` **(line: ${isNaN(d.data.funcLine) ? undefined : d.data.funcLine + 1})**`)
+                output = output.replaceAll('{line}', `${isNaN(d.data.funcLine) ? undefined : d.data.funcLine + 1}`)
+                output = output.replaceAll('{function}', d.data.name)
+                output = output.replaceAll('{errorMessage}', message)
+                if (d.channel === undefined) {
+                    d.data.datas.isError = true
+                } else {
+                    d.data.datas.isError = true
+                    d.channel.send(output)
+                }
+
+            }
+            return
+        };
         if (d.msg?.channel === undefined) {
+            d.data.datas.isError = true
             console.error(`\`${d.data.name} error: ${message}\` **(line: ${isNaN(d.data.funcLine) ? undefined : d.data.funcLine + 1})**`)
         } else {
             d.data.datas.isError = true

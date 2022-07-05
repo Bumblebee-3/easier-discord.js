@@ -12,6 +12,6 @@ module.exports = async (memb, bot) => {
     else {
       data.channel = bot.client.channels.cache.get(cmd?.channel)
     }
-    await require("../function.js")(cmd?.code, "memberLeave", bot.db, data, bot.client, bot)
+    require("../function.js")(cmd?.code, "memberLeave", bot.db, data, bot.client, bot)
   }
 }
