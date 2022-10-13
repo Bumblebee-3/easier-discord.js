@@ -213,9 +213,12 @@ class Bot {
 
 
 
-class CommandHandler extends Bot {
-    var bot = this.client;
+class CommandHandler {
+    constructor(opts){
+        this.bot=opts.client||opts.bot;
+    }
     load(folder) {
+        let bot = this.bot;
         let consoleText = [];
         let dirFolder = path.join(process.cwd(), folder);
 
