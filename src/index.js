@@ -214,7 +214,7 @@ class Bot {
 
 
 class CommandHandler extends Bot {
-    this.bot=this.client;
+    var bot = this.client;
     load(folder) {
         let consoleText = [];
         let dirFolder = path.join(process.cwd(), folder);
@@ -223,7 +223,7 @@ class CommandHandler extends Bot {
         files.forEach(x => {
             try {
                 const theFile = require(`${dirFolder}/${x}`)
-                const theCmd = this.bot.cmd[theFile?.type || "default"]
+                const theCmd = bot.cmd[theFile?.type || "default"]
                 if (theCmd !== undefined) {
                     theCmd.set(theFile.name, theFile)
                     consoleText.push('Loaded ' + dirFolder + '/' + x)
