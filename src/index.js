@@ -6,6 +6,8 @@ const newMap = require("./cache Handler/cache.js")
 const Db = require("meatdb")
 const fs = require("fs")
 const path = require("path")
+const ms = require('ms');
+const sleep = (time) => { return new Promise(res => setTimeout(res, time)) }
 const debug = require("debug")("ez:main")
 debug("Loaded")
 class Bot {
@@ -20,6 +22,7 @@ class Bot {
         this.funcParser = require("./funcs/parser")
         this.functions = new newMap()
         this.variable = new newMap()
+        this.status = new Map()
         this.start()
         if (typeof this.prefix != "string") throw new Error("prefix must be string");
         getVersion().then(z => {
@@ -52,6 +55,22 @@ class Bot {
                 this.functions.set("$" + y.replace(".js", "").toLowerCase(), file.code)
             })
         });
+        // Presence manager
+        this.client.on('ready', async () => {
+            while(this.status.size > 0) {
+                for(let [k, v] of this.status) {
+                    const session = this.client;
+                    session.user.setPresence({
+                        activities: [{
+                            name: v.text,
+                            type: v.type.toUpperCase()
+                        }],
+                        status: v.status
+                    });
+                    await sleep(ms(v.time));
+                }
+            }
+        })
     }
     //events
 
@@ -208,6 +227,15 @@ class Bot {
     createCustomFunction(opt) {
         if (!opt?.name || !opt?.name?.includes('$') || typeof opt?.code !== 'function') throw new Error('Invalid Name or Code');
         this.functions.set(opt.name.toLowerCase(), opt.code)
+    }
+
+    // Add presence
+    addPresence(...options) {
+        if(!options) throw new Error('Invalid presence options provided!');
+        options.map(s => {
+            if(ms(s.time) < 12000) throw new Error('Status time must be at least 12 seconds!');
+            this.status.set(s.text, s);
+        });
     }
 }
 

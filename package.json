@@ -22,10 +22,11 @@
   },
   "license": "MIT",
   "dependencies": {
-    "meatdb": "^1.0.3",
-    "axios":"^0.26.1",
+    "axios": "^0.26.1",
     "debug": "^4.3.4",
     "discord.js": "^13.6.0",
+    "meatdb": "^1.0.3",
+    "ms": "^2.1.3",
     "os": "0.1.2"
   }
 }
