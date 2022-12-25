@@ -122,6 +122,11 @@
     "combined-stream" "^1.0.8"
     "mime-types" "^2.1.12"
 
+"meatdb@^2.1.0":
+  "integrity" "sha512-IOJjItLidIyLQKTAs7JIDa1t4InerQGUDkNgluGPfbEIWbzUyXg+NHstppdTGMlmqaW1JYo57jl4rCIq8yEt2g=="
+  "resolved" "https://registry.npmjs.org/meatdb/-/meatdb-2.1.0.tgz"
+  "version" "2.1.0"
+
 "mime-db@1.52.0":
   "integrity" "sha512-sPU4uV7dYlvtWJxwwxHD0PuihVNiE7TyAbQ5SWxDCB9mUYvOgroQOwYQQOKPJ8CIbE+1ETVlOoK1UC2nU3gYvg=="
   "resolved" "https://registry.npmjs.org/mime-db/-/mime-db-1.52.0.tgz"
@@ -145,6 +150,11 @@
   "version" "2.6.7"
   dependencies:
     "whatwg-url" "^5.0.0"
+
+"os@0.1.2":
+  "integrity" "sha512-ZoXJkvAnljwvc56MbvhtKVWmSkzV712k42Is2mA0+0KTSRakq5XXuXpjZjgAt9ctzl51ojhQWakQQpmOvXWfjQ=="
+  "resolved" "https://registry.npmjs.org/os/-/os-0.1.2.tgz"
+  "version" "0.1.2"
 
 "tr46@~0.0.3":
   "integrity" "sha1-gYT9NH2snNwYWZLzpmIuFLnZq2o="

@@ -1,13 +1,13 @@
 const api = require("./handler/api.js");
 const getVersion = require("./handler/version.js");
 const version = require("../package.json").version;
-const Discord = require("discord.js")
-const newMap = require("./cache Handler/cache.js")
-const Db = require("meatdb")
-const fs = require("fs")
-const path = require("path")
-const debug = require("debug")("ez:main")
-debug("Loaded")
+const Discord = require("discord.js");
+const newMap = require("./cache Handler/cache.js");
+const Db = require("meatdb");
+const fs = require("fs");
+const path = require("path");
+const debug = require("debug")("ez:main");
+debug("Loaded");
 class Bot {
     constructor(opt) {
         this.opt = opt
@@ -20,7 +20,7 @@ class Bot {
         this.funcParser = require("./funcs/parser")
         this.functions = new newMap()
         this.variable = new newMap()
-        this.start()
+        this.#start()
         if (typeof this.prefix != "string") throw new Error("prefix must be string");
         getVersion().then(z => {
             const up = opt.autoUpdateVersion;
@@ -33,7 +33,7 @@ class Bot {
         })
     }
     //start client
-    start() {
+    #start() {
         debug('Bot#start')
         const client = new Discord.Client(
             this.opt

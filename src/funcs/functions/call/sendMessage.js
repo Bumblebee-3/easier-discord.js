@@ -18,6 +18,4 @@ module.exports = {
     return returns == "yes" ? mess?.id : ""
 
   }
-
-
 }
