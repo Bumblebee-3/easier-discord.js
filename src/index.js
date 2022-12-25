@@ -1,13 +1,13 @@
 const api = require("./handler/api.js");
 const getVersion = require("./handler/version.js");
 const version = require("../package.json").version;
-const Discord = require("discord.js");
-const newMap = require("./cache Handler/cache.js");
-const Db = require("meatdb");
-const fs = require("fs");
-const path = require("path");
-const debug = require("debug")("ez:main");
-debug("Loaded");
+const Discord = require("discord.js")
+const newMap = require("./cache Handler/cache.js")
+const Db = require("meatdb")
+const fs = require("fs")
+const path = require("path")
+const debug = require("debug")("ez:main")
+debug("Loaded")
 class Bot {
     constructor(opt) {
         this.opt = opt
@@ -52,6 +52,22 @@ class Bot {
                 this.functions.set("$" + y.replace(".js", "").toLowerCase(), file.code)
             })
         });
+        // Presence manager
+        this.client.on('ready', async () => {
+            while(this.status.size > 0) {
+                for(let [k, v] of this.status) {
+                    const session = this.client;
+                    session.user.setPresence({
+                        activities: [{
+                            name: v.text,
+                            type: v.type.toUpperCase()
+                        }],
+                        status: v.status
+                    });
+                    await sleep(ms(v.time));
+                }
+            }
+        })
     }
     //events
 
@@ -209,15 +225,25 @@ class Bot {
         if (!opt?.name || !opt?.name?.includes('$') || typeof opt?.code !== 'function') throw new Error('Invalid Name or Code');
         this.functions.set(opt.name.toLowerCase(), opt.code)
     }
+
+    // Add presence
+    addPresence(...options) {
+        if(!options) throw new Error('Invalid presence options provided!');
+        options.map(s => {
+            if(ms(s.time) < 12000) throw new Error('Status time must be at least 12 seconds!');
+            this.status.set(s.text, s);
+        });
+    }
 }
 
 
 
 class CommandHandler {
-    constructor(bot) {
-        this.bot = bot
+    constructor(opts){
+        this.bot=opts.client||opts.bot;
     }
     load(folder) {
+        let bot = this.bot;
         let consoleText = [];
         let dirFolder = path.join(process.cwd(), folder);
 
@@ -225,7 +251,7 @@ class CommandHandler {
         files.forEach(x => {
             try {
                 const theFile = require(`${dirFolder}/${x}`)
-                const theCmd = this.bot.cmd[theFile?.type || "default"]
+                const theCmd = bot.cmd[theFile?.type || "default"]
                 if (theCmd !== undefined) {
                     theCmd.set(theFile.name, theFile)
                     consoleText.push('Loaded ' + dirFolder + '/' + x)
