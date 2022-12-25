@@ -1,13 +1,13 @@
 const api = require("./handler/api.js");
 const getVersion = require("./handler/version.js");
 const version = require("../package.json").version;
-const Discord = require("discord.js")
-const newMap = require("./cache Handler/cache.js")
-const Db = require("meatdb")
-const fs = require("fs")
-const path = require("path")
-const debug = require("debug")("ez:main")
-debug("Loaded")
+const Discord = require("discord.js");
+const newMap = require("./cache Handler/cache.js");
+const Db = require("meatdb");
+const fs = require("fs");
+const path = require("path");
+const debug = require("debug")("ez:main");
+debug("Loaded");
 class Bot {
     constructor(opt) {
         this.opt = opt
