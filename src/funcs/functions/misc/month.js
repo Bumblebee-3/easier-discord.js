@@ -1,7 +1,7 @@
 module.exports = {
   name: "$month",
   usage: "[]",
-  description: "return year",
+  description: "return month",
   code: async(d) => {
 
   const months = ['january', 'febuary', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
