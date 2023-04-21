@@ -1,5 +1,5 @@
 module.exports = {
-  name: "$day",
+  name: "$month",
   usage: "[]",
   description: "return year",
   code: async(d) => {
